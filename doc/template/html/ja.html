@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html style="height: auto;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Packer Fuzzer</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Pocker Fuzzer Report">
+  <meta name="author" content="LUNPIN-III">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 图标 -->
+  <link rel="icon" href="">
+  <link rel="stylesheet" href="./res/all.min.css">
+  <link rel="stylesheet" href="./res/adminlte.min.css">
+  <link rel="stylesheet" href="./res/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="./res/ionicons.min.css">
+  <link href="./res/css" rel="stylesheet">
+    <link rel="stylesheet" href="./res/dataTables.bootstrap4.min.css">
+     <style type="text/css" media="print">
+        @page { size: landscape; }
+        @media print {
+          .btn, #scan_options  {
+            display: none;
+          }
+        }
+    </style>
+</head>
+<body class="sidebar-mini layout-fixed layout-navbar-fixed" style="height: auto;">
+<div class="wrapper">
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-dark navbar-primary">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+          <a id="nbar" class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block"><a class="nav-link"><b>API ファジー検出レポート</b></a></li>
+    </ul>
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item d-none d-sm-inline-block"><a data-toggle="modal" data-target="#mobsf" class="nav-link">MobSFテーマ</a></li>
+        <li class="nav-item d-none d-sm-inline-block"><a data-toggle="modal" data-target="#about-us" class="nav-link">私たちに関しては</a></li>
+        <li class="nav-item d-none d-sm-inline-block"><a href="mailto:admin@hackinn.com?subject=[!]%20Packer%20Fuzzer%20Feedback" class="nav-link">フィードバック</a></li>
+    </ul>
+
+    <!-- SEARCH FORM -->
+    <form class="form-inline ml-3" action="https://www.google.co.jp/search" method="GET">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" id="navbar-search-input" type="search" placeholder="質問？Try Google" name="q" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
+
+  </nav>
+  <!-- /.navbar -->
+ <!-- sidebar-->
+  <!-- Main Sidebar Container -->
+  <!-- 最左列表 -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="./res/images.jpeg" alt="MobSF" class="brand-image" style="opacity: .8">
+      <span class="brand-text logo-lg">  Packer<strong> Fuzzer</strong></span>
+    </a>
+
+    <!-- Main Sidebar Container -->
+    <!-- Sidebar -->
+    <div class="sidebar os-host os-theme-light os-host-resize-disabled os-host-transition os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden"><div class="os-resize-observer-host"><div class="os-resize-observer observed" style="left: 0px; right: auto;"></div><div class="os-resize-observer observed"></div><div class="os-resize-observer observed"></div><div class="os-resize-observer observed"></div><div class="os-resize-observer observed"></div></div><div class="os-size-auto-observer" style="height: calc(100% + 1px); float: left;"><div class="os-resize-observer observed"></div></div><div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 573px;"></div><div class="os-size-auto-observer" style="height: calc(100% + 1px); float: left;"><div class="os-resize-observer observed"></div></div><div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 618px;"></div><div class="os-size-auto-observer" style="height: calc(100% + 1px); float: left;"><div class="os-resize-observer observed"></div></div><div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 618px;"></div><div class="os-size-auto-observer" style="height: calc(100% + 1px); float: left;"><div class="os-resize-observer observed"></div></div><div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 618px;"></div><div class="os-size-auto-observer" style="height: calc(100% + 1px); float: left;"><div class="os-resize-observer observed"></div></div><div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 618px;"></div><div class="os-padding"><div class="os-viewport os-viewport-native-scrollbars-invisible os-viewport-native-scrollbars-overlaid" style=""><div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
+        <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="info">
+          <a class="d-block">Version 1.0 (日本語 ja_JP)</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+
+          <li class="nav-item">
+
+          </li>
+
+           <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-file"></i>
+              <p>基本的な関心<i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: block;">
+              <li class="nav-item">
+              <a href="#information" class="nav-link">
+                <i class="fas fa-info-circle nav-icon"></i>
+                <p>レポートの概要</p>
+              </a>
+              </li>
+
+                <li class="nav-item">
+                <a href="#js_info" class="nav-link">
+                  <i class="fas fa-database nav-icon"></i>
+                  <p>JS情報</p>
+                </a>
+              </li>
+
+                <li class="nav-item">
+                <a href="#nor_info" class="nav-link">
+                  <i class="fas fa-exclamation nav-icon"></i>
+                  <p>免責事項</p>
+                </a>
+                </li>
+
+
+            </ul>
+          </li>
+
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-bug"></i>
+              <p>脆弱性の詳細<i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: block;">
+              {vuln_nav}
+            </ul>
+          </li>
+
+          <li class="nav-item">
+          </li>
+          <li class="nav-item">
+            <a href="#api_list" class="nav-link">
+              <i class="nav-icon fa fa-list-ol"></i>
+              <p>APIリスト</p>
+            </a>
+          </li>
+          <li class="nav-item">
+           <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-plus"></i>
+              <p>安全チェックリスト<i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: block;">
+              {suggest_nav}
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#other" class="nav-link">
+              <i class="fas fa-globe nav-icon"></i>
+              <p>付録</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+
+            <ul class="nav nav-treeview" style="display: block;">
+              <li class="nav-item">
+              </li>
+              <li class="nav-item">
+              </li>
+              <li class="nav-item">
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:window.print()" class="nav-link">
+            <i class="nav-icon fas fa-print"></i>
+            <p>印刷する</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div></div></div><div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable os-scrollbar-auto-hidden"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar os-scrollbar-vertical os-scrollbar-unusable os-scrollbar-auto-hidden"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="height: 100%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar-corner"></div></div>
+    <!-- /.sidebar -->
+
+  </aside>
+
+  <!-- 左边位置结束 -->
+ <!-- /.sidebar -->
+<div class="content-wrapper" style="min-height: 650px;">
+  <!-- 正文内容 -->
+  <div class="content-header">
+  </div>
+
+
+<!-- 按钮 -->
+<div id="mobsf" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title">MobSFのテーマを使用しました...</h4>
+      </div>
+			<div class="modal-body">
+				<div class="box-body no-padding">
+					<p>
+						モバイルセキュリティフレームワーク（MobSF）は、静的および動的分析ペンテスト、マルウェア分析、セキュリティ評価フレームワークを実行できる自動化されたオールインワンモバイルアプリケーション（Android / iOS / Windows）です。<br><br>
+            プロジェクトのアドレス：<a href="https://github.com/MobSF/Mobile-Security-Framework-MobSF">https://github.com/MobSF/Mobile-Security-Framework-MobSF</a><br><br>
+            © 2020 Mobile Security Framework - MobSF | <a href="https://ajinabraham.com/">Ajin Abraham</a> | <a href="https://opensecurity.in/">OpenSecurity</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="about-us" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h6 class="modal-title">私たちに関しては</h4>
+			</div>
+			<div class="modal-body">
+				<div class="box-body no-padding">
+					<p>
+						このHTMLレポートに対する日本の貢献者は：Lucy<br><br>
+
+            Packer Fuzzerは、Webpackなどのフロントエンドパッケージツールによって構築されたWebサイトのセキュリティを迅速かつ効率的に検出するためのスキャンツールです。<br><br>
+
+            プロジェクトのアドレス：<a href="https://github.com/rtcatc/Packer-Fuzzer">https://github.com/rtcatc/Packer-Fuzzer</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{api_detial}
+
+{vuln_detial}
+
+    <!-- Content -->
+    <h2 class="page-header"></h2>
+    <div class="request_view">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="box box-solid">
+    <div class="box-header with-border">
+    <!-- <h3 class="box-title"><button type="button" class="btn btn-info btn-xs" onclick="show_projects()"> <span class="glyphicon glyphicon-list-alt"></span> PROJECTS</button></h3> -->
+    </div>
+    <!-- /.box-header -->
+    </div>
+    <!-- </div>load_project() -->
+    </div>
+    <div id="projects" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h4 class="modal-title"></h4>
+    </div>
+    <div class="modal-body">
+    <!-- /.box-header -->
+    <div class="box-body no-padding">
+    <select id="project_name" size="5">
+
+
+    </select>
+    <div class="modal-footer">
+    <div class="col-md-12 text-center">
+    <!-- <button type="button" class="btn btn-info" onclick="load_project()">Load Project</button> -->
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+
+<!-- 按钮结束 -->
+
+
+
+
+ <!-- Main content -->
+<a id="information" class="anchor"></a>
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+                <div class="row">
+                  <div class="col-12">
+                    <p><strong><i class="fas fa-info-circle"></i> レポートの概要</strong></p>
+                    <style>
+                      .left-info {
+                        float: left;
+                        width: 35%;
+                      }
+                      .right-info {
+                        margin-left: 5%;
+                      }
+                      .left-info2 {
+                        float: left;
+                        width: 50%;
+                        margin-left: 8%;
+                      }
+                      .right-info2 {
+                        margin-left: 45%;
+                      }
+                    </style>
+                    <div class="left-info">
+                      <script src="./res/index.js"></script>
+                      <div id="c1"></div>
+                      <script>
+                        var data = [
+                          {vuln_pie}
+                        ];
+                        var Stat = G2.Stat;
+                        var chart = new G2.Chart({
+                          id: 'c1',
+                          forceFit: true,
+                          height: 200
+                        });
+                        chart.source(data);
+                        // 重要：绘制饼图时，必须声明 theta 坐标系
+                        chart.coord('theta', {
+                          radius: 0.9 // 设置饼图的大小
+                        });
+                        chart.legend('name', {
+                          position: 'bottom',
+                          itemWrap: true,
+                          formatter: function(val) {
+                            for(var i = 0, len = data.length; i < len; i++) {
+                              var obj = data[i];
+                              if (obj.name === val) {
+                                return val;
+                              }
+                            }
+                          }
+                        });
+                        chart.tooltip({
+                          title: "漏洞分布",
+                          map: {
+                            value: 'value'
+                          }
+                        });
+                        chart.intervalStack()
+                          .position(Stat.summary.percent('value'))
+                          .color('name')
+                          .label('name*..percent',function(name, percent){
+                          percent = (percent * 100).toFixed(2) + '%';
+                          return name + ' ' + percent;
+                        });
+                        chart.render();
+                        // 设置默认选中
+                        var geom = chart.getGeoms()[0]; // 获取所有的图形
+                        var items = geom.getData(); // 获取图形对应的数据
+                        geom.setSelected(items[1]); // 设置选中
+                      </script>
+                    </div>
+                    {sum_of_reports}
+
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      </div>
+  </div>
+</section>
+<!-- =========================end information==================================== -->
+
+<!-- Js信息 -->
+<a id="js_info" class="anchor"></a>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+             <p>
+             <strong><i class="fa fa-database"></i> JS情報</strong>
+             </p><p>
+             </p><div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead class="ant-table-thead">
+                    <tr>
+                       <th style="width:6%">ID</th>
+                       <th >JSアドレス</th>
+                       <th style="width:13%">備考</th>
+                    </tr>
+                    </thead><tbody class="ant-table-tbody">
+                      {js_list}
+                  </tbody>
+                  </table>
+                </div>
+          </div>
+        </div>
+        </div>
+        </div>
+    </div>
+  </section>
+
+
+<a id="nor_info" class="anchor"></a>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+             <p>
+             <strong><i class="fa fa-exclamation"></i> 免責事項</strong>
+             </p><p>
+             </p><div class="table-responsive">
+                  このレポートは、Packer Fuzzerツールのテスト結果に基づいています<strong>自動生成</strong>レポート、レポートの内容は、Packer Fuzzer開発チームの立場と見解を表すものではありません。<br><br>
+                  このツールが提供する検出機能の拡散または使用に起因するもの<strong>直接的または間接的な結果と損失</strong>、ユーザーの責任ですか、このチームはこれを行いません<strong>責任を負う</strong>。<br><br>
+                  このツールを使用するときは、ユーザーとローカル<strong>関連する法規制</strong>、すべての<strong>無許可のテストは許可されていません</strong>。<br><br>
+                </div>
+          </div>
+        </div>
+        </div>
+        </div>
+    </div>
+  </section>
+
+ <!-- ===========================end screenshots ================================== -->
+ <a id="malware_check" class="anchor"></a>
+ <section class="content">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+              <p>
+             <strong><i class="fas fa-bug"></i>脆弱性の詳細</strong>
+            </p><p>
+            </p><div class="table-responsive">
+              {vuln_list}
+            </div>
+          </div>
+        </div><!-- /.card -->
+        </div>
+        <!-- end row -->
+        </div>
+    </div>
+
+</section>
+
+
+
+ <!-- ===========================end domain malware check ================================== -->
+ <a id="api_list" class="anchor"></a>
+ <section class="content">
+   <div class="container-fluid">
+     <div class="row">
+         <div class="col-lg-12">
+         <div class="card">
+           <div class="card-body">
+              <p>
+              <strong><i class="fa fa-list-ol"></i> APIリスト</strong>
+              </p><p>
+              </p><div class="table-responsive">
+                   <table class="table table-hover">
+                     <thead class="ant-table-thead">
+                     <tr>
+                        <th style="width:6%">ID</th>
+                        <th style="width:16%">API名</th>
+                        <th>APIアドレス</th>
+                        <th style="width:13%">種類</th>
+                        <th style="width:6%"></th>
+                     </tr>
+                     </thead><tbody class="ant-table-tbody">
+                       {api_list}
+                   </tbody>
+                   </table>
+                 </div>
+           </div>
+         </div>
+         </div>
+         </div>
+     </div>
+   </section>
+
+
+ <!-- ===========================总体安全建议================================== -->
+ <a id="urls" class="anchor"></a>
+ <section class="content">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+              <p>
+             <strong><i class="fas fa-plus"></i> 安全アドバイス</strong>
+            </p><p>
+            </p><div class="table-responsive">
+              <ul>
+                {suggest_foryou}
+              </ul>
+               </div>
+              </div>
+          </div>
+        </div><!-- /.card -->
+        </div>
+        <!-- end row -->
+        </div>
+</section>
+
+<a id="other" class="anchor"></a>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+             <p>
+             <strong><i class="fas fa-globe"></i>付録</strong>
+             </p>
+                <div class="table-responsive">
+                  <ul>
+                    <li><h5>脆弱性の説明</h5></li>
+                    <strong>CORSの脆弱性：</strong>クロスドメインリソース共有により、ブラウザの同一生成元ポリシーが緩和され、ブラウザを介した異なるWebサイトと異なるサーバ間の通信が可能になります。 ユーザーがCORS設定vuln.comを含むWebサイトにログインし、同時に攻撃者によって提供されたリンクevil.comにアクセスするとします。 evil.com Webサイトはvuln.comに機密データを取得するように要求します。ブラウザが情報を受信できるかどうかは、vuln.comの設定によって異なります。 vuln.comがAccess-Control-Allow-Originヘッダーで構成されており、それが予期されている場合、それを受信することが許可されます。それ以外の場合、同一生成元ポリシーのため、ブラウザーはそれを受信しません。<br><br>
+                    <strong>不正アクセスの脆弱性：</strong>名前が示すように、インターフェースへの不正アクセスは、認証を要求せずに、対応するビジネスロジック機能に直接アクセスして操作できます。 これは通常、認証ページの欠陥、認証なし、不適切なセキュリティ設定などが原因で発生します。<br><br>
+                    <strong>機密情報漏えいの脆弱性：</strong>情報漏えいとは、WebサイトのページまたはJSファイル内の機密情報の漏えいを指します。 この機密情報を通じて、攻撃者はサーバーにさらに侵入することができます。<br><br>
+                    <strong>水平ウルトラバイア：</strong>不正な脆弱性とは、アプリケーションが現在のユーザー操作のIDと権限を厳密に検証しないため、ユーザーが自分の管理権限の範囲を超えて機能を操作し、ユーザーが操作できない動作を操作することを意味します。 権限レベルを超えると、同じレベルのユーザーが、名前、携帯電話番号、連絡先アドレス、個人情報、注文記録など、お互いの機密情報にアクセスすることになります。 同時に、同じ権限を持つ他のユーザーとして、削除、追加、変更などの特定の機能を実行することもできます。<br><br>
+                    <strong>SQLインジェクションの脆弱性：</strong>SQLインジェクションの脆弱性の理由は、Webサイトアプリケーションが書き込み時にユーザーがサーバーに送信したデータの有効性（タイプ、長さ、ビジネスパラメーターの合法性など）を検証せず、特殊文字を含むユーザー入力データを効果的にフィルタリングしなかったためです 、ユーザーの入力が直接データベースに取り込まれて実行されるため、SQLステートメントの元の設計の予想される結果を超え、SQLインジェクションの脆弱性が発生します。<br><br>
+                    <strong>脆弱なパスワードの脆弱性：</strong>ウェブサイトの管理および運用担当者のセキュリティ意識が不足しているため、便宜上、パスワードを忘れないようにするために、パスワードは非常に覚えやすいか、システムのデフォルトのパスワードが直接採用されています。 攻撃者はこの脆弱性を利用して、アプリケーションシステムまたは管理システムに直接侵入することで、システム、Webページ、およびデータを改ざんおよび削除し、システムおよびユーザーデータを不正に取得し、サーバーを落下させることさえあります。<br><br>
+                    <strong>任意のファイルアップロードの脆弱性：</strong>アプリケーションシステムは、ファイルアップロード機能でユーザーがアップロードしたファイルタイプ、形式、コンテンツなどの正当性をチェックし、攻撃者がWebshel​​lの悪意のあるスクリプトファイル（.php、.jsp、aspなど）または次のような望ましくない形式のファイルをアップロードできるようにします。 同時に、HTMLファイル、SHTMLファイルなど、ディレクトリジャンプなどの文字を使用したり、アップロードディレクトリを制御して、ファイルをWebディレクトリまたは任意のディレクトリに直接アップロードしたり、リモートサーバーで任意の悪意のあるスクリプトファイルを実行して、アプリケーションシステムの権限を直接取得する可能性があります。 。<br><br>
+                    <li><h5>脆弱性レベル</h5></li>
+                    このレポートには、低リスク、中リスク、高リスクの3つの脆弱性レベルが組み込まれています。 その中には、リスクの高い脆弱性のタイプが含まれます：弱いパスワードの脆弱性、任意のファイルアップロードの脆弱性、SQLインジェクションの脆弱性;中程度に危険な脆弱性のタイプには、次のものが含まれます：水平方向の超ウイルスの脆弱性、機密情報漏えいの脆弱性、不正アクセスの脆弱性、低リスクの脆弱性には、 ：CORSの脆弱性。 中でも、「低い」レベルの信頼度での検出結果は、脆弱性レベルのダメージを自動的に軽減し、脆弱性レベルがすでに最も低い場合、ダウングレードされません。 たとえば、特定の脆弱性は次のとおりです。SQLインジェクションの脆弱性。これはリスクの高い脆弱性ですが、その信頼度は「低い」ため、リスクは中程度の脆弱性に自動的にダウングレードされます。<br><br>
+                    <li><h5>リスクレベル</h5></li>
+                    このレポートには、スコアリング評価モデルを使用して、リスクなし、低リスク、中リスク、高リスクの4つのリスクレベルが組み込まれており、対応するスコアレベルは0、5、10、18です。 対応する脆弱性レベルは、低リスクの場合は1ポイント、中リスクの場合は2ポイント、高リスクの場合は6ポイントです。 たとえば、スキャンで、合計1つの高リスク、2つの中リスク、および5つの低リスクの脆弱性が見つかり、スコアの計算方法は次のとおりです。1x 6 + 2 x 2 + 5 x 1 = 15（ポイント）、スコアは10より大きく、 18未満なので、リスクレベルは「中程度のリスク」です。
+                  </ul>
+                </div>
+            </div>
+          </div>
+        </div><!-- /.card -->
+        </div>
+        <!-- end row -->
+        </div>
+</section>
+
+</div>
+
+</div>
+
+
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+      <strong>© 2020 Packer Fuzzer チーム</strong>
+       | Poc-Sir、KpLi0rn、Lucy、RachesseHS、Lupin-III
+      <div class="float-right d-none d-sm-inline-block">
+       プロジェクトのアドレス：<a href="https://github.com/rtcatc/Packer-Fuzzer">https://github.com/rtcatc/Packer-Fuzzer</a>
+      </div>
+    </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+<div id="sidebar-overlay"></div></div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="./res/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="./res/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="./res/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="./res/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="./res/adminlte.min.js"></script>
+<script>
+// navbar hack
+if ($(".sidebar-collapse")[0])
+document.getElementById("nbar").style.display = "none";
+</script>
+
+<!-- DataTables -->
+<script src="./res/jquery.dataTables.min.js"></script>
+<script src="./res/dataTables.bootstrap4.min.js"></script>
+<script>
+  $(function () {
+    // Datatable
+    $('table').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true,
+      "responsive": true,
+    });
+  });
+  // Navbar Active
+    $(".nav-link").on("click", function() {
+    $(".nav-link").removeClass("active");
+    $(this).addClass("active");
+  });
+</script>
+
+</body></html>

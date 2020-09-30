@@ -1,0 +1,8 @@
+bs4
+docx
+urllib3
+requests
+docx2pdf
+docx2txt
+PyExecJS
+python-docx

@@ -1,0 +1,612 @@
+
+<!DOCTYPE html>
+<html style="height: auto;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Packer Fuzzer</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Pocker Fuzzer Report">
+  <meta name="author" content="LUNPIN-III">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 图标 -->
+  <link rel="icon" href="">
+  <link rel="stylesheet" href="./res/all.min.css">
+  <link rel="stylesheet" href="./res/adminlte.min.css">
+  <link rel="stylesheet" href="./res/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="./res/ionicons.min.css">
+  <link href="./res/css" rel="stylesheet">
+    <link rel="stylesheet" href="./res/dataTables.bootstrap4.min.css">
+     <style type="text/css" media="print">
+        @page { size: landscape; }
+        @media print {
+          .btn, #scan_options  {
+            display: none;
+          }
+        }
+    </style>
+</head>
+<body class="sidebar-mini layout-fixed layout-navbar-fixed" style="height: auto;">
+<div class="wrapper">
+
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-dark navbar-primary">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+          <a id="nbar" class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block"><a class="nav-link"><b>Reporte de detección difusa del API</b></a></li>
+    </ul>
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item d-none d-sm-inline-block"><a data-toggle="modal" data-target="#mobsf" class="nav-link">El tema de MobSF</a></li>
+        <li class="nav-item d-none d-sm-inline-block"><a data-toggle="modal" data-target="#about-us" class="nav-link">Sobre nosotros</a></li>
+        <li class="nav-item d-none d-sm-inline-block"><a href="mailto:admin@hackinn.com?subject=[!]%20Packer%20Fuzzer%20Feedback" class="nav-link">Retroalimentación</a></li>
+    </ul>
+
+    <!-- SEARCH FORM -->
+    <form class="form-inline ml-3" action="https://www.google.es/search" method="GET">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" id="navbar-search-input" type="search" placeholder="¿Preguntas? Google" name="q" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
+
+  </nav>
+  <!-- /.navbar -->
+ <!-- sidebar-->
+  <!-- Main Sidebar Container -->
+  <!-- 最左列表 -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+      <img src="./res/images.jpeg" alt="MobSF" class="brand-image" style="opacity: .8">
+      <span class="brand-text logo-lg">  Packer<strong> Fuzzer</strong></span>
+    </a>
+
+    <!-- Main Sidebar Container -->
+    <!-- Sidebar -->
+    <div class="sidebar os-host os-theme-light os-host-resize-disabled os-host-transition os-host-scrollbar-horizontal-hidden os-host-scrollbar-vertical-hidden"><div class="os-resize-observer-host"><div class="os-resize-observer observed" style="left: 0px; right: auto;"></div><div class="os-resize-observer observed"></div><div class="os-resize-observer observed"></div><div class="os-resize-observer observed"></div><div class="os-resize-observer observed"></div></div><div class="os-size-auto-observer" style="height: calc(100% + 1px); float: left;"><div class="os-resize-observer observed"></div></div><div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 573px;"></div><div class="os-size-auto-observer" style="height: calc(100% + 1px); float: left;"><div class="os-resize-observer observed"></div></div><div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 618px;"></div><div class="os-size-auto-observer" style="height: calc(100% + 1px); float: left;"><div class="os-resize-observer observed"></div></div><div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 618px;"></div><div class="os-size-auto-observer" style="height: calc(100% + 1px); float: left;"><div class="os-resize-observer observed"></div></div><div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 618px;"></div><div class="os-size-auto-observer" style="height: calc(100% + 1px); float: left;"><div class="os-resize-observer observed"></div></div><div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 618px;"></div><div class="os-padding"><div class="os-viewport os-viewport-native-scrollbars-invisible os-viewport-native-scrollbars-overlaid" style=""><div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
+        <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="info">
+          <a class="d-block">Version 1.0 (Español es_ES)</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+
+          <li class="nav-item">
+
+          </li>
+
+           <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-file"></i>
+              <p>Información básica<i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: block;">
+              <li class="nav-item">
+              <a href="#information" class="nav-link">
+                <i class="fas fa-info-circle nav-icon"></i>
+                <p>Resumen del informe</p>
+              </a>
+              </li>
+
+                <li class="nav-item">
+                <a href="#js_info" class="nav-link">
+                  <i class="fas fa-database nav-icon"></i>
+                  <p>Información de Js</p>
+                </a>
+              </li>
+
+                <li class="nav-item">
+                <a href="#nor_info" class="nav-link">
+                  <i class="fas fa-exclamation nav-icon"></i>
+                  <p>Descargo de responsabilidad</p>
+                </a>
+                </li>
+
+
+            </ul>
+          </li>
+
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-bug"></i>
+              <p>Detalles de la vulnerabilidad<i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: block;">
+              {vuln_nav}
+            </ul>
+          </li>
+
+          <li class="nav-item">
+          </li>
+          <li class="nav-item">
+            <a href="#api_list" class="nav-link">
+              <i class="nav-icon fa fa-list-ol"></i>
+              <p>Lista de API</p>
+            </a>
+          </li>
+          <li class="nav-item">
+           <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-plus"></i>
+              <p>Recomendaciones de seguridad<i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: block;">
+              {suggest_nav}
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#other" class="nav-link">
+              <i class="fas fa-globe nav-icon"></i>
+              <p>Apéndice</p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+
+            <ul class="nav nav-treeview" style="display: block;">
+              <li class="nav-item">
+              </li>
+              <li class="nav-item">
+              </li>
+              <li class="nav-item">
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:window.print()" class="nav-link">
+            <i class="nav-icon fas fa-print"></i>
+            <p>Impresión</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div></div></div><div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable os-scrollbar-auto-hidden"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar os-scrollbar-vertical os-scrollbar-unusable os-scrollbar-auto-hidden"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="height: 100%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar-corner"></div></div>
+    <!-- /.sidebar -->
+
+  </aside>
+
+  <!-- 左边位置结束 -->
+ <!-- /.sidebar -->
+<div class="content-wrapper" style="min-height: 650px;">
+  <!-- 正文内容 -->
+  <div class="content-header">
+  </div>
+
+
+<!-- 按钮 -->
+<div id="mobsf" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title">Usamos el tema de MobSF...</h6>
+      </div>
+			<div class="modal-body">
+				<div class="box-body no-padding">
+					<p>
+						El Mobile Security Framework (MobSF) es una aplicación móvil automatizada todo en uno (Android / iOS / Windows) que puede realizar análisis estáticos y dinámicos para pruebas de bolígrafo, análisis de malware y marco de evaluación de la seguridad.<br><br>
+            Dirección del proyecto：<a href="https://github.com/MobSF/Mobile-Security-Framework-MobSF">https://github.com/MobSF/Mobile-Security-Framework-MobSF</a><br><br>
+            © 2020 Mobile Security Framework - MobSF | <a href="https://ajinabraham.com/">Ajin Abraham</a> | <a href="https://opensecurity.in/">OpenSecurity</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="about-us" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h6 class="modal-title">Sobre nosotros...</h6>
+			</div>
+			<div class="modal-body">
+				<div class="box-body no-padding">
+					<p>
+						El colaborador de habla hispana de este informe HTML es: RachesseHS<br><br>
+
+            Packer Fuzzer es una herramienta de escaneo rápida, eficiente y segura para sitios web construidos con Webpack y otras herramientas de empaquetado frontal.<br><br>
+
+            Dirección del proyecto：<a href="https://github.com/rtcatc/Packer-Fuzzer">https://github.com/rtcatc/Packer-Fuzzer</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{api_detial}
+
+{vuln_detial}
+
+    <!-- Content -->
+    <h2 class="page-header"></h2>
+    <div class="request_view">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="box box-solid">
+    <div class="box-header with-border">
+    <!-- <h3 class="box-title"><button type="button" class="btn btn-info btn-xs" onclick="show_projects()"> <span class="glyphicon glyphicon-list-alt"></span> PROJECTS</button></h3> -->
+    </div>
+    <!-- /.box-header -->
+    </div>
+    <!-- </div>load_project() -->
+    </div>
+    <div id="projects" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h4 class="modal-title"></h4>
+    </div>
+    <div class="modal-body">
+    <!-- /.box-header -->
+    <div class="box-body no-padding">
+    <select id="project_name" size="5">
+
+
+    </select>
+    <div class="modal-footer">
+    <div class="col-md-12 text-center">
+    <!-- <button type="button" class="btn btn-info" onclick="load_project()">Load Project</button> -->
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+
+
+
+<!-- 按钮结束 -->
+
+
+
+
+ <!-- Main content -->
+<a id="information" class="anchor"></a>
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+                <div class="row">
+                  <div class="col-12">
+                    <p><strong><i class="fas fa-info-circle"></i> Resumen del informe</strong></p>
+                    <style>
+                      .left-info {
+                        float: left;
+                        width: 35%;
+                      }
+                      .right-info {
+                        margin-left: 5%;
+                      }
+                      .left-info2 {
+                        float: left;
+                        width: 50%;
+                        margin-left: 8%;
+                      }
+                      .right-info2 {
+                        margin-left: 45%;
+                      }
+                    </style>
+                    <div class="left-info">
+                      <script src="./res/index.js"></script>
+                      <div id="c1"></div>
+                      <script>
+                        var data = [
+                          {vuln_pie}
+                        ];
+                        var Stat = G2.Stat;
+                        var chart = new G2.Chart({
+                          id: 'c1',
+                          forceFit: true,
+                          height: 200
+                        });
+                        chart.source(data);
+                        // 重要：绘制饼图时，必须声明 theta 坐标系
+                        chart.coord('theta', {
+                          radius: 0.9 // 设置饼图的大小
+                        });
+                        chart.legend('name', {
+                          position: 'bottom',
+                          itemWrap: true,
+                          formatter: function(val) {
+                            for(var i = 0, len = data.length; i < len; i++) {
+                              var obj = data[i];
+                              if (obj.name === val) {
+                                return val;
+                              }
+                            }
+                          }
+                        });
+                        chart.tooltip({
+                          title: "Distribución de las vulnerabilidades",
+                          map: {
+                            value: 'value'
+                          }
+                        });
+                        chart.intervalStack()
+                          .position(Stat.summary.percent('value'))
+                          .color('name')
+                          .label('name*..percent',function(name, percent){
+                          percent = (percent * 100).toFixed(2) + '%';
+                          return name + ' ' + percent;
+                        });
+                        chart.render();
+                        // 设置默认选中
+                        var geom = chart.getGeoms()[0]; // 获取所有的图形
+                        var items = geom.getData(); // 获取图形对应的数据
+                        geom.setSelected(items[1]); // 设置选中
+                      </script>
+                    </div>
+                    {sum_of_reports}
+
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      </div>
+  </div>
+</section>
+<!-- =========================end information==================================== -->
+
+<!-- Información de Js -->
+<a id="js_info" class="anchor"></a>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+             <p>
+             <strong><i class="fa fa-database"></i> Información de Js</strong>
+             </p><p>
+             </p><div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead class="ant-table-thead">
+                    <tr>
+                       <th style="width:6%">ID</th>
+                       <th >Dirección JS</th>
+                       <th style="width:13%">Nota</th>
+                    </tr>
+                    </thead><tbody class="ant-table-tbody">
+                      {js_list}
+                  </tbody>
+                  </table>
+                </div>
+          </div>
+        </div>
+        </div>
+        </div>
+    </div>
+  </section>
+
+
+<a id="nor_info" class="anchor"></a>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+             <p>
+             <strong><i class="fa fa-exclamation"></i> Descargo de responsabilidad</strong>
+             </p><p>
+             </p><div class="table-responsive">
+              Este informe es <strong>generado automáticamente</strong> por la herramienta Packer Fuzzer en base a los resultados de las pruebas del usuario, y el contenido del informe no representa la posición y la opinión de nuestro equipo.<br><br>
+              Todas <strong>las consecuencias y las pérdidas directas o indirectas causadas</strong> por la difusión o el uso de las funciones de prueba que ofrece este instrumento son responsabilidad del usuario, y el equipo no asume ninguna <strong>responsabilidad al respecto</strong>. <br><br>
+              Por favor, respete <strong>las leyes y reglamentos locales</strong> del usuario y del país donde se encuentra el sistema de objetivos cuando utilice esta herramienta, cualquier <strong>no autorizada está prohibida.</strong><br><br>
+           </div>
+          </div>
+        </div>
+        </div>
+        </div>
+    </div>
+  </section>
+
+ <!-- ===========================end screenshots ================================== -->
+ <a id="malware_check" class="anchor"></a>
+ <section class="content">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+              <p>
+             <strong><i class="fas fa-bug"></i> Detalles de la vulnerabilidad</strong>
+            </p><p>
+            </p><div class="table-responsive">
+              {vuln_list}
+            </div>
+          </div>
+        </div><!-- /.card -->
+        </div>
+        <!-- end row -->
+        </div>
+    </div>
+
+</section>
+
+
+
+ <!-- ===========================end domain malware check ================================== -->
+ <a id="api_list" class="anchor"></a>
+ <section class="content">
+   <div class="container-fluid">
+     <div class="row">
+         <div class="col-lg-12">
+         <div class="card">
+           <div class="card-body">
+              <p>
+              <strong><i class="fa fa-list-ol"></i> Lista de API</strong>
+              </p><p>
+              </p><div class="table-responsive">
+                   <table class="table table-hover">
+                     <thead class="ant-table-thead">
+                     <tr>
+                        <th style="width:6%">ID</th>
+                        <th style="width:16%">Nombre de la API</th>
+                        <th>Dirección API</th>
+                        <th style="width:13%">Tipo de solicitud</th>
+                        <th style="width:6%"></th>
+                     </tr>
+                     </thead><tbody class="ant-table-tbody">
+                       {api_list}
+                   </tbody>
+                   </table>
+                 </div>
+           </div>
+         </div>
+         </div>
+         </div>
+     </div>
+   </section>
+
+
+ <!-- ===========================总体Recomendaciones de seguridad================================== -->
+ <a id="urls" class="anchor"></a>
+ <section class="content">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+              <p>
+             <strong><i class="fas fa-plus"></i> Recomendaciones de seguridad</strong>
+            </p><p>
+            </p><div class="table-responsive">
+              <ul>
+                {suggest_foryou}
+              </ul>
+               </div>
+              </div>
+          </div>
+        </div><!-- /.card -->
+        </div>
+        <!-- end row -->
+        </div>
+</section>
+
+<a id="other" class="anchor"></a>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+             <p>
+             <strong><i class="fas fa-globe"></i> Apéndice</strong>
+             </p>
+                <div class="table-responsive">
+                  <ul>
+                    <li><h5>Descripción de las vulnerabilidades</h5></li>
+                    <strong>Vulnerabilidad CORS: </strong>El intercambio de recursos entre dominios puede relajar la política de homología del navegador, permitiendo que diferentes sitios web y diferentes servidores se comuniquen entre sí a través del navegador. Supongamos que un usuario se conecta a vuln.com, un sitio web que contiene una configuración CORS, y también accede a vuln.com, un enlace proporcionado por el atacante. El sitio web vuln.com hace una solicitud a vuln.com para obtener datos sensibles, y la capacidad del navegador para recibir la información depende de la configuración de vuln.com. Si vuln.com está configurado con el encabezado Access-Control-Allow-Origin y se espera, entonces se permite recibirlo, de lo contrario el navegador no lo recibirá debido a la misma política de origen.<br><br>
+                    <strong>Vulnerabilidad de acceso no autorizado: </strong>El acceso no autorizado a la interfaz, como su nombre indica, puede acceder y operar directamente las funciones lógicas comerciales correspondientes sin solicitar autorización. Esto suele deberse a una página de autenticación defectuosa o no autenticada, a una configuración de seguridad inadecuada, etc.<br><br>
+                    <strong>Vulnerabilidad a la revelación de información sensible: </strong>La revelación de información se refiere a la divulgación de información sensible en una página web o en un archivo JS. A través de esta información sensible, un atacante puede comprometer aún más el servidor.<br><br>
+                    <strong>Vulnerabilidad de anulación horizontal: </strong>Una vulnerabilidad de anulación es cuando una aplicación no verifica estrictamente los permisos de identidad de las operaciones del usuario actual, lo que da lugar a que los usuarios puedan operar funciones que están más allá de sus privilegios administrativos, operando así algunos comportamientos que no están disponibles para ese usuario. La anulación de nivel puede dar lugar a que los usuarios de entre el mismo nivel tengan acceso a la información sensible de los demás, como el nombre, el número de teléfono, la dirección de contacto, los datos personales, el historial de pedidos, etc. También puede ser posible realizar una línea de funciones, tales como borrar, añadir, modificar, etc., como otros usuarios con privilegios de anulación de nivel.<br><br>
+                    <strong>Vulnerabilidad de la inyección SQL: </strong>La vulnerabilidad de la inyección SQL surge porque la aplicación web no está escrita para que el usuario envíe datos al servidor para verificar la legitimidad de los datos (tipo, longitud, legitimidad de los parámetros de negocio, etc.), y no hay un filtrado eficaz de caracteres especiales de los datos introducidos por el usuario, de modo que éste los introduce directamente en la ejecución de la base de datos, más allá de los resultados esperados del diseño original de la declaración SQL, lo que da lugar a una vulnerabilidad de la inyección SQL.<br><br>
+                    <strong>Débil vulnerabilidad de las contraseñas: </strong>El personal de gestión y operaciones del sitio web utiliza contraseñas muy fáciles de recordar o adopta directamente la contraseña predeterminada del sistema debido a una insuficiente conciencia de la seguridad, a fin de facilitar y evitar que se olviden las contraseñas. Los atacantes pueden utilizar esta vulnerabilidad para entrar directamente en el sistema de aplicación o en el sistema de gestión, a fin de manipular y eliminar el sistema, las páginas web, los datos, acceder ilegalmente al sistema, los datos de los usuarios, e incluso puede provocar la caída del servidor.<br><br>
+                    <strong>Vulnerabilidad de carga de archivos arbitraria: </strong>El sistema de aplicación comprueba la legitimidad del tipo de archivo, el formato y el contenido del archivo cargado por el usuario en la función de carga de archivos, lo que permite a un atacante cargar un archivo de script de Web malicioso (.php, .jsp, .asp, etc.) o un archivo de formato no esperado como: archivo HTML, archivo SHTML, etc. Al mismo tiempo, puede utilizar los caracteres de salto de directorio o controlar la carga. que puede dar lugar a la ejecución de archivos de escritura maliciosos arbitrarios en un servidor remoto para obtener acceso directo al sistema de aplicación.<br><br>
+                    <li><h5>Niveles de vulnerabilidad</h5></li>
+                    Este informe tiene tres niveles de vulnerabilidad incorporados, que son: bajo, medio y alto riesgo. Los tipos de vulnerabilidad de alto riesgo son: vulnerabilidad de contraseñas débiles, vulnerabilidad de carga de archivos arbitrarios, vulnerabilidad de inyección SQL; los tipos de vulnerabilidad de riesgo medio son: vulnerabilidad de salto horizontal, vulnerabilidad de divulgación de información sensible, vulnerabilidad de acceso no autorizado; los tipos de vulnerabilidad de bajo riesgo son: vulnerabilidad de CORS.<br>El nivel de confianza de los resultados del nivel "bajo" de detección reducirá automáticamente la vulnerabilidad de un nivel de daño, si se encuentra en el nivel de vulnerabilidad más bajo no es un descenso. Por ejemplo, una vulnerabilidad para: vulnerabilidad de inyección SQL, debería ser una vulnerabilidad de alto riesgo, pero el nivel de confianza es "bajo", se rebaja automáticamente al riesgo de vulnerabilidad.<br>
+
+                    <li><h5>Nivel de riesgo</h5></li>
+                      Este informe tiene cuatro niveles de riesgo: sin riesgo, riesgo bajo, riesgo medio y riesgo alto, con una escala de puntuación de 0, 5, 10 y 18, respectivamente. Por ejemplo, en un cierto escaneo se encuentran una vulnerabilidad de alto riesgo, dos de riesgo medio y cinco de bajo riesgo, la puntuación se calcula como 1 x 6 + 2 x 2 + 5 x 1 = 15 (puntos), la puntuación es mayor de 10 y menor de 18, por lo que el nivel de riesgo es "de riesgo medio".
+                  </ul>
+                </div>
+            </div>
+          </div>
+        </div><!-- /.card -->
+        </div>
+        <!-- end row -->
+        </div>
+</section>
+
+</div>
+
+</div>
+
+
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+      <strong>© 2020 Packer Fuzzer Team</strong>
+       | Poc-Sir、KpLi0rn、Lucy、RachesseHS、Lupin-III
+      <div class="float-right d-none d-sm-inline-block">
+        Dirección del proyecto：<a href="https://github.com/rtcatc/Packer-Fuzzer">https://github.com/rtcatc/Packer-Fuzzer</a>
+      </div>
+    </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+<div id="sidebar-overlay"></div></div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="./res/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="./res/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="./res/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="./res/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="./res/adminlte.min.js"></script>
+<script>
+// navbar hack
+if ($(".sidebar-collapse")[0])
+document.getElementById("nbar").style.display = "none";
+</script>
+
+<!-- DataTables -->
+<script src="./res/jquery.dataTables.min.js"></script>
+<script src="./res/dataTables.bootstrap4.min.js"></script>
+<script>
+  $(function () {
+    // Datatable
+    $('table').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true,
+      "responsive": true,
+    });
+  });
+  // Navbar Active
+    $(".nav-link").on("click", function() {
+    $(".nav-link").removeClass("active");
+    $(this).addClass("active");
+  });
+</script>
+
+</body></html>
