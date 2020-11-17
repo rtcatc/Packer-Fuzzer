@@ -324,6 +324,13 @@ class FuzzerParam():
                                     sql = "UPDATE api_tree set option='%s' where id='%s'" % (templates_get_str, result_id)
                                 cursor.execute(sql)
                         else:
+                            projectDBPath = DatabaseType(self.projectTag).getPathfromDB() + self.projectTag + ".db"
+                            connect = sqlite3.connect(os.sep.join(projectDBPath.split('/')))
+                            cursor = connect.cursor()
+                            connect.isolation_level = None
+                            sql = "select option from api_tree where id='%s'" % (result_id)
+                            cursor.execute(sql)
+                            options = cursor.fetchall()
                             for option in options:
                                 new_str = json.loads(option[0].replace("{result_get}", "").replace("\'","\""))
                                 sql = "UPDATE api_tree set option='%s' where id='%s'" % (new_str, result_id)
