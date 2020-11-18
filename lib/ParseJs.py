@@ -56,7 +56,11 @@ class ParseJs():  # 获取js进行提取
                 #self.jsPathInScripts.append(jsPathInScript)
                 jsTag = Utils().creatTag(6)
                 res = urlparse(self.url)
-                PATH = "tmp/" + self.projectTag + "_" + res.netloc + "/" + self.projectTag + ".db"
+                domain = res.netloc
+                if ":" in domain:
+                    domain = str(domain).split(":")[0]
+                PATH = "tmp/" + self.projectTag + "_" + domain +'/' + self.projectTag + ".db"
+
                 conn = sqlite3.connect(os.sep.join(PATH.split('/')))
                 cursor = conn.cursor()
                 conn.isolation_level = None
@@ -66,7 +70,7 @@ class ParseJs():  # 获取js进行提取
                     inurl = self.url + "/§§§"
                 sql = "insert into js_file(name,path,local) values('%s','%s','%s')" % (jsTag + ".js" , inurl , jsTag + ".js")
                 cursor.execute(sql)
-                with open("tmp" + os.sep + self.projectTag + "_" + res.netloc + os.sep + jsTag + ".js", "wb") as js_file:
+                with open("tmp" + os.sep + self.projectTag + "_" + domain + os.sep + jsTag + ".js", "wb") as js_file:
                     js_file.write(jsPathInScript)
                     js_file.close()
                     cursor.execute("UPDATE js_file SET success = 1 WHERE local='%s';" % (jsTag + ".js"))

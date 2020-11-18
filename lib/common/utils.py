@@ -36,7 +36,7 @@ class Utils():
         if choice == 2:
             path = path.split('/')
             del path[-1]
-            path = os.sep.join(path)
+            path = os.sep.join(path)    #
             path = os.getcwd() + os.sep + path
             try:
                 if not os.path.exists(path):

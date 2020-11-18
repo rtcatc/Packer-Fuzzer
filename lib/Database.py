@@ -43,7 +43,9 @@ class DatabaseType():
         unixTime = int(time.time())
         res = urlparse(url)
         domain = res.netloc
-        PATH = "tmp/" + self.projectTag + "_" + domain + "/" + self.projectTag + ".db"
+        if ":" in domain:
+            domain = str(domain).split(":")[0]
+        PATH = "tmp/" + self.projectTag + "_" + domain + '/' + self.projectTag + ".db"
         try:
             if Utils().creatSometing(2, PATH) == 1:
                 connect = sqlite3.connect(os.sep.join(PATH.split('/')))
@@ -234,17 +236,16 @@ class DatabaseType():
             blacks = ReadConfig()
             blacks.getValue("blacklist", "apiExts")
             black_ext = "".join(blacks.res).split(",")
-
-            for ext in black_ext:
-                if ("<html" not in text) and ("PNG" not in text) and (len(text) != 0) and (url.split("/")[-1] != "favicon.ico")\
-                        and (("." + str(url.split("/")[-1].split(".")[-1])) != ext):
-                    sql = "UPDATE api_tree SET result=\'" + text + "\' WHERE path=\"" + url + '\"'
-                else:
-                    sql = "UPDATE api_tree SET success=0 WHERE path=\"" + url + '\"'
-            cursor.execute(sql)
-            # except:
-            #     pass
-            # conn.commit()
+            try:
+                for ext in black_ext:
+                    if ("<html" not in text) and ("PNG" not in text) and (len(text) != 0) and (url.split("/")[-1] != "favicon.ico")\
+                            and (("." + str(url.split("/")[-1].split(".")[-1])) != ext):
+                        sql = "UPDATE api_tree SET result=\'" + text + "\' WHERE path=\"" + url + '\"'
+                    else:
+                        sql = "UPDATE api_tree SET success=0 WHERE path=\"" + url + '\"'
+                cursor.execute(sql)
+            except Exception as e:
+                self.log.error("[Err] %s" % e)
         conn.close()
 
     def insertCorsInfoIntoDB(self, request_b, response_h):

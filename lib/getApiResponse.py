@@ -10,7 +10,6 @@ from concurrent.futures import ThreadPoolExecutor,wait, ALL_COMPLETED
 
 
 class ApiResponse(object):
-    
     def __init__(self, urls,options):
         self.log = creatLog().get_logger()
         self.UserAgent = ["Mozilla/5.0 (Windows NT 6.1; WOW64; rv:34.0) Gecko/20100101 Firefox/34.0",
