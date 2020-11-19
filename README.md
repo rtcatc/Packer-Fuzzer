@@ -16,7 +16,7 @@
     <img src="doc/kiwi/demo-terminal.png" alt="DEMO" width="77%" height="77%"> 
  </p>
 
-[English](./README.md)
+[English](./README.en.md)
 
 ##  👮🏻‍♀️ 免责声明
 
