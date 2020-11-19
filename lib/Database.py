@@ -244,8 +244,9 @@ class DatabaseType():
                     else:
                         sql = "UPDATE api_tree SET success=0 WHERE path=\"" + url + '\"'
                 cursor.execute(sql)
+                self.log.debug("数据库插入成功")
             except Exception as e:
-                pass
+                self.log.debug("插入时有些例外")
         conn.close()
 
     def insertCorsInfoIntoDB(self, request_b, response_h):
