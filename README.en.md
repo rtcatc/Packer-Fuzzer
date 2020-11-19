@@ -6,9 +6,10 @@
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/python-3.X- blueviolet"></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Version-1.0-red" ></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/LICENSE-GPL-ff69b4" ></a>
-    <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/github/stars/rtcatc/Packer- Fuzzer.svg"></a>
+    <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/github/stars/rtcatc/Packer-Fuzzer.svg"></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Packer-Fuzzer-green" ></a>
-    <h5 align="center">Proudly produced by Poc-Sir, KpLi0rn, Lucy, RachesseHS, Lupin-III</h5>
+    <h5 align="center">Proudly produced by Poc-Sir, KpLi0rn, Liucy, RachesseHS, Lupin-III</h5>
+    <h5 align="center" ><a href="./README.md">Click here for the Chinese version</a></h5>
  </p>
 
 
@@ -16,7 +17,7 @@
     <img src="doc/kiwi/demo-terminal.png" alt="DEMO" width="77%" height="77%">
  </p>
 
-[Chinese](./README.md)
+
 
 ## 👮🏻‍♀️ Disclaimer
 
@@ -24,7 +25,7 @@
 
 This tool will **automatically generate** a scan result report based on the user's detection results. The content of this report and other derivative content **cannot represent** the position and views of the team.
 
-Please follow the ** relevant laws and regulations ** of the user and the country where the target system is located when using this tool. All **unauthorized tests are not allowed**. In the event of related illegal acts, we will **reserve** the right to pursue** your legal responsibility, and **fully cooperate** with relevant agencies to initiate investigations.
+Please follow the **relevant laws and regulations** of the user and the country where the target system is located when using this tool. All **unauthorized tests are not allowed**. In the event of related illegal acts, we will **reserve** the right to pursue **your legal responsibility, and fully cooperate** with relevant agencies to initiate investigations.
 
 
 
@@ -161,7 +162,15 @@ When submitting, in order to facilitate our judgment, please attach the correspo
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="https://github.com/KpLi0rn"><img alt="KpLi0rn" src="https://avatars2.githubusercontent.com/u/44540341?s=64&v=4">&nbsp;KpLi0rn </a>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://github.com/1104972454"><img alt="Lucy" src="https://avatars3.githubusercontent.com/u/33159179?s=64&v=4" width="8 %" height="8%">&nbsp;Lucy</a>
+    <a href="https://github.com/1104972454"><img alt="Liucy" src="https://avatars3.githubusercontent.com/u/33159179?s=64&v=4">&nbsp;Liucy</a>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="https://github.com/RachesseHS"><img alt="RachesseHS" src="https://avatars1.githubusercontent.com/u/38565929?s=64&v=4">&nbsp;RachesseHS</a>
  </p>
+
+
+
+## 👑 Updated records
+
+- v1.0
+
+  1. We created it.

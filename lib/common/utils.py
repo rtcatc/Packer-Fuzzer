@@ -58,7 +58,10 @@ class Utils():
         if lang:
             localLang = lang
         else:
-            localLang = locale.getdefaultlocale()[0][0:2]
+            try:
+                localLang = locale.getdefaultlocale()[0][0:2]
+            except:
+                localLang = 'en' #默认英语
         try:
             myWord = readConfig.ReadConfig().getLang(localLang,someWord)[0]
         except:

@@ -76,7 +76,7 @@ Banner4 = """{}
 def RandomBanner():
     # BannerList = [Banner1,Banner2,Banner3,Banner4]
     print(Banner4)
-    print("©2020 Poc-Sir、KpLi0rn、Lucy、RachesseHS、Lupin-III")
+    print("©2020 Poc-Sir、KpLi0rn、Liucy、RachesseHS、Lupin-III")
     print("Project Hub: https://github.com/rtcatc/Packer-Fuzzer\n")
 
 

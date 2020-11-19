@@ -8,15 +8,16 @@
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/LICENSE-GPL-ff69b4"></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/github/stars/rtcatc/Packer-Fuzzer.svg"></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Packer-Fuzzer-green"></a>
-    <h5 align="center">由Poc-Sir、KpLi0rn、Lucy、RachesseHS、Lupin-III荣誉出品</h5>
+    <h5 align="center">由Poc-Sir、KpLi0rn、Liucy、RachesseHS、Lupin-III荣誉出品</h5>
+    <h5 align="center" ><a href="./README.en.md">Click here for the English version</a></h5>
  </p>
 
 
  <p align="center">
-    <img src="doc/kiwi/demo-terminal.png" alt="DEMO" width="77%" height="77%"> 
+    <img src="doc/kiwi/demo-terminal.png" alt="DEMO" width="77%" height="77%">
  </p>
 
-[English](./README.en.md)
+
 
 ##  👮🏻‍♀️ 免责声明
 
@@ -30,7 +31,7 @@
 
 ## 🏝 介是个嘛
 
-随着WEB前端打包工具的流行，您在日常渗透测试、安全服务中是否遇到越来越多以`Webpack打包器`为代表的网站？这类打包器会将整站的API和API参数打包在一起供Web集中调用，这也便于我们快速发现网站的功能和API清单，但往往这些打包器所生成的JS文件数量异常之多并且总JS代码量异常庞大（多大上万行），这给我们的手工测试带来了极大的不便，Packer Fuzzer软件应运而生。
+随着WEB前端打包工具的流行，您在日常渗透测试、安全服务中是否遇到越来越多以`Webpack打包器`为代表的网站？这类打包器会将整站的API和API参数打包在一起供Web集中调用，这也便于我们快速发现网站的功能和API清单，但往往这些打包器所生成的JS文件数量异常之多并且总JS代码量异常庞大（多达上万行），这给我们的手工测试带来了极大的不便，Packer Fuzzer软件应运而生。
 
 本工具支持自动模糊提取对应目标站点的API以及API对应的参数内容，并支持对：未授权访问、敏感信息泄露、CORS、SQL注入、水平越权、弱口令、任意文件上传七大漏洞进行模糊高效的快速检测。在扫描结束之后，本工具还支持自动生成扫描报告，您可以选择便于分析的HTML版本以及较为正规的doc、pdf、txt版本。
 
@@ -152,6 +153,11 @@
 
 在提交时，为了便于我们判断，请附上`logs`目录中对应的日志文件，谢谢您的配合！
 
+与此同时您可以扫描左下方群聊二维码加入我们的微信讨论群，或者您可以扫描右边“天下大木头(KpLi0rn)”的个人二维码备注“Packer Fuzzer”由他拉您入群聊：
+
+<img alt="QR-code" src="https://data.hackinn.com/photo/PF-QRcode.jpeg" width="27%" height="27%" style="max-width:100%;">
+<img alt="QR-code" src="https://data.hackinn.com/photo/DMT-QRcode.jpg" width="27%" height="27%" style="max-width:100%;">
+
 
 
 ## 🍻 贡献名单
@@ -161,7 +167,15 @@
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="https://github.com/KpLi0rn"><img alt="KpLi0rn" src="https://avatars2.githubusercontent.com/u/44540341?s=64&v=4">&nbsp;KpLi0rn</a>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://github.com/1104972454"><img alt="Lucy" src="https://avatars3.githubusercontent.com/u/33159179?s=64&v=4" width="8%" height="8%">&nbsp;Lucy</a>
+    <a href="https://github.com/1104972454"><img alt="Liucy" src="https://avatars3.githubusercontent.com/u/33159179?s=64&v=4">&nbsp;Liucy</a>
    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="https://github.com/RachesseHS"><img alt="RachesseHS" src="https://avatars1.githubusercontent.com/u/38565929?s=64&v=4">&nbsp;RachesseHS</a>
  </p>
+
+
+
+## 👑 更新记录
+
+- v1.0
+
+  1. 开天辟地，懂的自然懂
