@@ -40,10 +40,11 @@ class ParseJs():  # 获取js进行提取
         url = self.url
         self.log.info(Utils().tellTime() + Utils().getMyWord("{target_url}") + url)
         self.log.info(Utils().tellTime() + Utils().getMyWord("{pares_js}"))
-        if self.options.ssl_flag == 1:
+        sslFlag = int(self.options.ssl_flag)
+        if sslFlag == 1:
             demo = requests.get(url=url, headers=headers, proxies=self.proxy_data,verify=False).text
         else:
-            demo = requests.get(url=url, headers=headers,proxies=self.proxy_data,).text
+            demo = requests.get(url=url, headers=headers,proxies=self.proxy_data).text
         demo = demo.replace("<!--", "").replace("-->", "")  # 删去html注释
         soup = BeautifulSoup(demo, "html.parser")
         for item in soup.find_all("script"):

@@ -7,7 +7,7 @@ from lib.common.CreatLog import creatLog
 
 
 class CorsTest(object):
-    
+
     def __init__(self, url, options):
         self.UserAgent = ["Mozilla/5.0 (Windows NT 6.1; WOW64; rv:34.0) Gecko/20100101 Firefox/34.0",
                           "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; en) Opera 9.50",
@@ -51,7 +51,11 @@ class CorsTest(object):
 
     def testStart(self):
         try:
-            text = requests.get(self.url, headers=self.header, timeout=6, allow_redirects=False).headers
+            sslFlag = int(self.options.ssl_flag)
+            if sslFlag == 1:
+                text = requests.get(self.url, headers=self.header, timeout=6, allow_redirects=False,verify=False).headers
+            else:
+                text = requests.get(self.url, headers=self.header, timeout=6, allow_redirects=False).headers
             self.res = text
             if 'example.org' in text['Access-Control-Allow-Origin'] and text[
                  'Access-Control-Allow-Credentials'] == 'true':

@@ -55,11 +55,13 @@ class PostApiText(object):
         # s.keep_alive = False
         try:
             tag = 0
-            text = str(requests.post(url, headers=headers, timeout=6, data=data, proxies=self.proxy_data, verify=False).text)  # 正常的返回code是int类型
-            code = str(requests.post(url, headers=headers, timeout=6, data=data, proxies=self.proxy_data,verify=False).status_code)
-            # if code != "404":
-            #     self.res[url] = text
-
+            sslFlag = int(self.options.ssl_flag)
+            if sslFlag == 1:
+                text = str(requests.post(url, headers=headers, timeout=6, data=data, proxies=self.proxy_data, verify=False).text)  # 正常的返回code是int类型
+                code = str(requests.post(url, headers=headers, timeout=6, data=data, proxies=self.proxy_data,verify=False).status_code)
+            else:
+                text = str(requests.post(url, headers=headers, timeout=6, data=data, proxies=self.proxy_data).text)
+                code = str(requests.post(url, headers=headers, timeout=6, data=data, proxies=self.proxy_data).status_code)
             if (code != "404") and (code != "415"):
                 self.res[url] = text
             while (code == "415" or code == "401"):
@@ -109,11 +111,15 @@ class PostApiText(object):
 
                         }
                     data = '<?xml version="1.0" encoding="utf-8"?>'
-                    code = str(
-                        requests.post(url, headers=header, timeout=6, data=data, proxies=self.proxy_data,allow_redirects=False).status_code)
+                    if sslFlag == 1:
+                        code = str(requests.post(url, headers=header, timeout=6, data=data, proxies=self.proxy_data,allow_redirects=False,verify=False).status_code)
+                    else:
+                        code = str(requests.post(url, headers=header, timeout=6, data=data, proxies=self.proxy_data,allow_redirects=False).status_code)
                     if code == "200":
-                        text = str(requests.post(url, headers=header, timeout=6, data=data,proxies=self.proxy_data,
-                                                 allow_redirects=False).text)
+                        if sslFlag == 1:
+                            text = str(requests.post(url, headers=header, timeout=6, data=data,proxies=self.proxy_data,allow_redirects=False,verify=False).text)
+                        else:
+                            text = str(requests.post(url, headers=header, timeout=6, data=data,proxies=self.proxy_data,allow_redirects=False).text)
                         self.res[url] = text
                         break
                 # 如果状态码还是415 同时已经有了三次了

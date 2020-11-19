@@ -55,9 +55,12 @@ class ApiResponse(object):
             }
         s = requests.Session()
         s.keep_alive = False
+        sslFlag = int(self.options.ssl_flag)
         try:
-            code = str(s.get(url, headers=headers, timeout=6, proxies=self.proxy_data, verify=False).status_code)  # 正常的返回code是int类型
-
+            if sslFlag == 1:
+                code = str(s.get(url, headers=headers, timeout=6, proxies=self.proxy_data, verify=False).status_code)  # 正常的返回code是int类型
+            else:
+                code = str(s.get(url, headers=headers, timeout=6, proxies=self.proxy_data).status_code)
             # if code == "405":
             #     self.res[url] = 2
             if code != "404":

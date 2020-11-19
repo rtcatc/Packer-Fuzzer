@@ -13,7 +13,7 @@ def testProxy(options,show):
             'https': options.proxy,
         }
         ipAddr = "127.0.0.1"
-        ipAddr = requests.get(url, proxies=proxy_data, timeout=7).text.strip()
+        ipAddr = requests.get(url, proxies=proxy_data, timeout=7, verify=False).text.strip()
         if show == 1:
             print("[+] " + Utils().getMyWord("{connect_s}") + ipAddr)
         return ipAddr

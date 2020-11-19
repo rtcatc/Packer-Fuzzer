@@ -38,6 +38,7 @@ class WebRequest(object): # 获取http返回的状态码
 
     def check(self, url, options):
         urllib3.disable_warnings()  # 禁止跳出来对warning
+        sslFlag = int(self.options.ssl_flag)
         if self.options.cookie != None:
             headers = {
                 'User-Agent': random.choice(self.UserAgent),
@@ -60,7 +61,10 @@ class WebRequest(object): # 获取http返回的状态码
         try:
             if self.mode == 1:
                 try:
-                    code = str(s.get(url, headers=headers, timeout=6, proxies=self.proxy_data, verify=False).status_code)  # 正常的返回code是int类型
+                    if sslFlag == 1:
+                        code = str(s.get(url, headers=headers, timeout=6, proxies=self.proxy_data, verify=False).status_code)  # 正常的返回code是int类型
+                    else:
+                        code = str(s.get(url, headers=headers, timeout=6, proxies=self.proxy_data).status_code)
                     # self.codes.append(url+": "+code)
                     self.codes[url] = code
                 except Exception as e:
@@ -69,7 +73,10 @@ class WebRequest(object): # 获取http返回的状态码
             if self.mode == 2:
                 # 获取响应包
                 try:
-                    response = str(s.get(url, headers=headers, timeout=6, proxies=self.proxy_data, verify=False).headers)
+                    if sslFlag == 1:
+                        response = str(s.get(url, headers=headers, timeout=6, proxies=self.proxy_data, verify=False).headers)
+                    else:
+                        response = str(s.get(url, headers=headers, timeout=6, proxies=self.proxy_data).headers)
                     self.responses.append(url + ": " + response)
                     return self.responses
                 except Exception as e:
@@ -79,8 +86,12 @@ class WebRequest(object): # 获取http返回的状态码
             # 获取响应包和内容
             if self.mode == 3:
                 try:
-                    text = str(s.get(url, headers=headers, timeout=6, proxies=self.proxy_data, verify=False).text)
-                    response = str(s.get(url, headers=headers, timeout=6, proxies=self.proxy_data, verify=False).headers)
+                    if sslFlag == 1:
+                        text = str(s.get(url, headers=headers, timeout=6, proxies=self.proxy_data, verify=False).text)
+                        response = str(s.get(url, headers=headers, timeout=6, proxies=self.proxy_data, verify=False).headers)
+                    else:
+                        text = str(s.get(url, headers=headers, timeout=6, proxies=self.proxy_data).text)
+                        response = str(s.get(url, headers=headers, timeout=6, proxies=self.proxy_data).headers)
                     self.texts.append(url + ": " + text)
                     self.responses.append(response)
                     self.res = zip(self.responses, self.texts)

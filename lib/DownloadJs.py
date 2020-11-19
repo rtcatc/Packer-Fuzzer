@@ -108,7 +108,7 @@ class DownloadJs():
                 # headers = {
                 #     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0"}
                 self.log.info(Utils().tellTime() + Utils().getMyWord("{downloading}") + jsFilename)
-                sslFlag = 1  # 后期读取实现
+                sslFlag = int(self.options.ssl_flag)
                 if sslFlag == 1:
                     jsFileData = requests.get(url=jsRealPath, headers=header, proxies=self.proxy_data, verify=False).content
                 else:

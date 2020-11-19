@@ -96,12 +96,16 @@ class UploadTest():
         flag = 0
         try:
             # python3 随机生成字符串
+            sslFlag = int(self.options.ssl_flag)
             for ext in ext_fuzz:
                 # 进度条
                 ext_fuzz.set_description("Processing %s" % ext)
                 files = {"file": (
                     "{}.{}".format(random.randint(1,100), ext), (b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A\x00\x00\x00\x0D\x49\x48\xD7"+rands))}
-                resp = requests.post(path, files=files, headers=self.header, proxies=self.proxy_data)
+                if sslFlag == 1:
+                    resp = requests.post(path, files=files, headers=self.header, proxies=self.proxy_data,verify=False)
+                else:
+                    resp = requests.post(path, files=files, headers=self.header, proxies=self.proxy_data)
                 # 如果上传失败了就继续上传
                 # 全部走一遍报错
                 for fail in str(self.upload_fail).split(","):

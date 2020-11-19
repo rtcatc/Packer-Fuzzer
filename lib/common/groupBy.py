@@ -63,7 +63,11 @@ class GroupBy(object):
                 obj.forceBrute()
                 for url, code in obj.codes.items():
                     # 如果请求返回码是415 再请求三
-                    text = requests.head(url, headers=self.header, timeout=6, proxies=self.proxy_data, allow_redirects=False)
+                    sslFlag = int(self.options.ssl_flag)
+                    if sslFlag == 1:
+                        text = requests.head(url, headers=self.header, timeout=6, proxies=self.proxy_data, allow_redirects=False, verify=False)
+                    else:
+                        text = requests.head(url, headers=self.header, timeout=6, proxies=self.proxy_data, allow_redirects=False)
                     # 错误代码415
                     if "text/html" not in text.headers['Content-Type']:
                         #print(url)

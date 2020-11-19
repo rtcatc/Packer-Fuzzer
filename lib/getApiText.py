@@ -7,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor, wait, ALL_COMPLETED
 
 
 class ApiText(object):
-    
+
     def __init__(self, urls, options):
         self.log = creatLog().get_logger()
         self.UserAgent = ["Mozilla/5.0 (Windows NT 6.1; WOW64; rv:34.0) Gecko/20100101 Firefox/34.0",
@@ -51,8 +51,12 @@ class ApiText(object):
             }
         s = requests.Session()
         s.keep_alive = False
+        sslFlag = int(self.options.ssl_flag)
         try:
-            text = str(s.get(url, headers=headers, timeout=6, proxies=self.proxy_data, verify=False).text)  # 正常的返回code是int类型
+            if sslFlag == 1:
+                text = str(s.get(url, headers=headers, timeout=6, proxies=self.proxy_data, verify=False).text)  # 正常的返回code是int类型
+            else:
+                text = str(s.get(url, headers=headers, timeout=6, proxies=self.proxy_data).text)
             self.res[url] = text
             # else:
             # self.res[url] = text
