@@ -304,7 +304,7 @@ class FuzzerParam():
                             cursor.execute(sql)
                             options = cursor.fetchall()
                             for option in options:
-                                new_str = json.loads(option[0].replace("{result_get}","").replace("\'","\""))
+                                new_str = json.loads(option[0].replace("{result_get}","")
                                 if new_str["post"]:
                                     templates_get_str = option[0]
                                     templates_get_str = templates_get_str.replace("{result_get}", replace_str_get[:-2])
@@ -332,7 +332,8 @@ class FuzzerParam():
                             cursor.execute(sql)
                             options = cursor.fetchall()
                             for option in options:
-                                new_str = json.loads(option[0].replace("{result_get}", "").replace("\'","\""))
+                                new_str = json.loads(option[0].replace("{result_get}", ""))
+                                new_str = json.dumps(new_str).replace("\'","\"")
                                 sql = "UPDATE api_tree set option='%s' where id='%s'" % (new_str, result_id)
                                 cursor.execute(sql)
 
