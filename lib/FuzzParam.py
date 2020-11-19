@@ -304,7 +304,7 @@ class FuzzerParam():
                             cursor.execute(sql)
                             options = cursor.fetchall()
                             for option in options:
-                                new_str = json.loads(option[0].replace("{result_get}","")
+                                new_str = json.loads(option[0].replace("{result_get}",""))
                                 if new_str["post"]:
                                     templates_get_str = option[0]
                                     templates_get_str = templates_get_str.replace("{result_get}", replace_str_get[:-2])
