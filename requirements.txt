@@ -1,5 +1,4 @@
 bs4
-docx
 urllib3
 requests
 docx2pdf
