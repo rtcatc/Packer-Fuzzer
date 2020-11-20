@@ -278,7 +278,7 @@ class CreatHtml():
         cursor.execute(sql)
         vuln_infos = cursor.fetchall()
         for vuln_info in vuln_infos:
-            if vuln_info[3] == "BAC":
+            if vuln_info[3] == "upLoad":
                 sql = "select * from api_tree where id='%s'" % (vuln_info[1])
                 cursor.execute(sql)
                 api_infos = cursor.fetchall()
@@ -324,7 +324,7 @@ class CreatHtml():
         cursor.execute(sql)
         vuln_infos = cursor.fetchall()
         for vuln_info in vuln_infos:
-            if vuln_info[3] == "BAC":
+                if vuln_info[3] == "SQL":
                 sql = "select * from api_tree where id='%s'" % (vuln_info[1])
                 cursor.execute(sql)
                 api_infos = cursor.fetchall()
