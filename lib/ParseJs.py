@@ -137,7 +137,10 @@ class ParseJs():  # 获取js进行提取
                 jsRealPath = baseUrl + jsPath #我感觉我原来的逻辑写错了
                 self.jsRealPaths.append(jsRealPath)
         self.log.info(Utils().tellTime() + Utils().getMyWord("{pares_js_fini_1}") + str(len(self.jsRealPaths)) + Utils().getMyWord("{pares_js_fini_2}"))
-        DownloadJs(self.jsRealPaths,self.options).downloadJs(self.projectTag, res.netloc, 0)
+        domain = res.netloc
+        if ":" in domain:
+            domain = str(domain).replace(":", "_")
+        DownloadJs(self.jsRealPaths,self.options).downloadJs(self.projectTag, domain, 0)
         extJS = CommandLines().cmd().js
         if extJS != None:
             extJSs = extJS.split(',')
