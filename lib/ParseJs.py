@@ -59,7 +59,7 @@ class ParseJs():  # 获取js进行提取
                 res = urlparse(self.url)
                 domain = res.netloc
                 if ":" in domain:
-                    domain = str(domain).split(":")[0]
+                    domain = str(domain).replace(":", "_")
                 PATH = "tmp/" + self.projectTag + "_" + domain +'/' + self.projectTag + ".db"
 
                 conn = sqlite3.connect(os.sep.join(PATH.split('/')))

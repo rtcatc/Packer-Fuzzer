@@ -44,7 +44,7 @@ class DatabaseType():
         res = urlparse(url)
         domain = res.netloc
         if ":" in domain:
-            domain = str(domain).split(":")[0]
+            domain = str(domain).replace(":","_")
         PATH = "tmp/" + self.projectTag + "_" + domain + '/' + self.projectTag + ".db"
         try:
             if Utils().creatSometing(2, PATH) == 1:

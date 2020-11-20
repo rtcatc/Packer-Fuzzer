@@ -62,4 +62,4 @@ class CorsTest(object):
                 #print("已检测到cors漏洞")
                 self.flag = 1
         except Exception as e:
-            self.log.error("[Err] %s" % e)
+            self.log.debug("Access-Control-Allow-Origin头不存在")
