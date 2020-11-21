@@ -30,7 +30,7 @@ class Apicollect():
         self.log = creatLog().get_logger()
 
     def apiCollect(self, filePath):
-        with open(filePath, "r", encoding="utf-8") as jsPath:
+        with open(filePath, "r", encoding="utf-8",errors="ignore") as jsPath:
             apiStr = jsPath.read()
             for regx in self.regxs:
                 apiLists = re.findall(regx, apiStr)
