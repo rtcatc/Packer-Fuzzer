@@ -171,6 +171,14 @@ When submitting, in order to facilitate our judgment, please attach the correspo
 
 ## 👑 Updated records
 
-- v1.0
+- v1.0 30/09/2020
 
   1. We created it.
+
+- v1.1 21/11/2020
+
+  1. fix some compatibility issues in Windows system. 2;
+
+  2. improve the part of global certificate validation that is ignored;
+
+  3. fixed several bugs that could cause serious errors in the scanner.
