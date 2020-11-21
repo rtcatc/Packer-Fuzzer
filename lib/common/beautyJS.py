@@ -15,7 +15,7 @@ class BeautyJs():
         self.projectTag = projectTag
 
     def beauty_js(self,filePath):
-        lines = open(filePath, encoding="utf-8").read().split(";")
+        lines = open(filePath, encoding="utf-8",errors="ignore").read().split(";")
         indent = 0
         formatted = []
         for line in lines:
@@ -31,7 +31,7 @@ class BeautyJs():
                     newline.append("\n")
                     newline.append("\t" * indent)
             formatted.append("\t" * indent + "".join(newline))
-        open(filePath, "w", encoding="utf-8").writelines(";\n".join(formatted))
+        open(filePath, "w", encoding="utf-8",errors="ignore").writelines(";\n".join(formatted))
 
     def rewrite_js(self):
         projectPath = DatabaseType(self.projectTag).getPathfromDB()

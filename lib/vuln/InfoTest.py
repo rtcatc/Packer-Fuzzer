@@ -20,7 +20,7 @@ class InfoTest():
             for filename in filenames:
                 if filename != self.projectTag + ".db":
                     filePath = os.path.join(parent, filename)
-                    with open(filePath, "r", encoding="utf-8") as jsPath:
+                    with open(filePath, "r", encoding="utf-8",errors="ignore") as jsPath:
                         js_str = jsPath.read()
                         for infoTest in self.info_Test.split(","):
                             info_re = infoTest.split("§§§")[0]

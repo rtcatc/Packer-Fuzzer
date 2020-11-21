@@ -65,7 +65,7 @@ class RecoverSpilt():
             return 0
 
     def checkCodeSpilting(self, jsFilePath):
-        jsOpen = open(jsFilePath, 'r', encoding='UTF-8')  # 防编码报错
+        jsOpen = open(jsFilePath, 'r', encoding='UTF-8',errors="ignore")  # 防编码报错
         jsFile = jsOpen.readlines()
         jsFile = str(jsFile)  # 二次转换防报错
         if "document.createElement(\"script\");" in jsFile:

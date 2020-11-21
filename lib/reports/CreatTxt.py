@@ -21,6 +21,6 @@ class CreatTxt():
             self.log.error("[Err] %s" % e)
         if "\n\n\n\n\n" in text:
             text1 = text.replace("\n\n\n\n\n", "\n")
-        with open(self.txt_filepath, "w", encoding="utf-8") as f:
+        with open(self.txt_filepath, "w", encoding="utf-8",errors="ignore") as f:
             f.write(text1)
             f.close()

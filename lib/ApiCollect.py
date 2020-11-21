@@ -57,7 +57,7 @@ class Apicollect():
 
     def apiViolentCollect(self, filePath):
         violentRe = r'(?isu)"([^"]+)'
-        with open(filePath, "r", encoding="utf-8") as jsPath:
+        with open(filePath, "r", encoding="utf-8",errors="ignore") as jsPath:
             print(Utils().tellTime() + Utils().getMyWord("{api_violent_file}") + Utils().getFilename(filePath))
             apiStr = jsPath.read()
             apiLists = re.findall(violentRe, apiStr)
@@ -95,7 +95,7 @@ class Apicollect():
         baseURL = CommandLines().cmd().baseurl
         if baseURL == None:
             self.baseUrlPaths.append("/")  # 加入一个默认的
-            with open(filePath, "r", encoding="utf-8") as js_path:
+            with open(filePath, "r", encoding="utf-8",errors="ignore") as js_path:
                 baseUrlStr = js_path.read()
                 for baseurlRegx in self.baseUrlRegxs:
                     baseurLists = re.findall(baseurlRegx, baseUrlStr)

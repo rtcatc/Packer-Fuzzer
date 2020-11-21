@@ -52,7 +52,7 @@ class FuzzerParam():
                 for filename in filenames:
                     if filename != self.projectTag + ".db":
                         filePath = os.path.join(parent, filename)
-                        with open(filePath, "r", encoding="utf-8") as f:
+                        with open(filePath, "r", encoding="utf-8",errors="ignore") as f:
                             js_strs = f.readlines()
                             count = 0
                             for js_str in js_strs:

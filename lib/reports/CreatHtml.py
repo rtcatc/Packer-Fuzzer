@@ -1551,10 +1551,10 @@ class CreatHtml():
 
     def CreatMe(self):
         docLang = Utils().getMyWord("{lang}")
-        with open("doc" + os.sep + "template" + os.sep + "html"  + os.sep + docLang + ".html","r",encoding="utf-8") as html:
+        with open("doc" + os.sep + "template" + os.sep + "html"  + os.sep + docLang + ".html","r",encoding="utf-8",errors="ignore") as html:
             html_str = html.read()
             new_html_str = CreatHtml(self.projectTag, self.html_filepath).HtmlReplace(html_str)
-            with open(self.html_filepath,"w",encoding="utf-8") as new_html:
+            with open(self.html_filepath,"w",encoding="utf-8",errors="ignore") as new_html:
                 new_html.write(new_html_str)
                 new_html.close()
             html.close()
