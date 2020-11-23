@@ -24,7 +24,7 @@ class CreateReport():
     def create_repoter(self):
         main_url = DatabaseType(self.projectTag).getURLfromDB()
         parse_url = urlparse(main_url)
-        host = parse_url.netloc
+        host = parse_url.netloc.replace(':', '_') #win can not deal : in filename
         reportType = CommandLines().cmd().report
         reportTypes = reportType.split(',')
         if "doc" in reportTypes or "pdf" in reportTypes or "txt" in reportTypes or "html" in reportTypes:
