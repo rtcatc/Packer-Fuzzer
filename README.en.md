@@ -177,8 +177,8 @@ When submitting, in order to facilitate our judgment, please attach the correspo
 
 - v1.1 21/11/2020
 
-  1. fix some compatibility issues in Windows system. 2;
+  1. Fixed some compatibility issues in Windows system;
 
-  2. improve the part of global certificate validation that is ignored;
+  2. Improve the part of global certificate validation that is ignored;
 
-  3. fixed several bugs that could cause serious errors in the scanner.
+  3. Fixed several bugs that could cause serious errors in the scanner.
