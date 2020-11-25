@@ -14,7 +14,7 @@
 
 
  <p align="center">
-    <img src="doc/kiwi/demo-terminal.png" alt="DEMO" width="77%" height="77%">
+    <img src="demo-terminal.png" alt="DEMO" width="77%" height="77%">
  </p>
 
 
