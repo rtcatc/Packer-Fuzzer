@@ -30,6 +30,10 @@ class RecoverSpilt():
             if "[" and "]" in variable[0]:
                 variable = variable[0].replace("[", "").replace("]", "")
             jsCodeFunc = "function js_compile(%s){js_url=" % (variable) + jsCode + "\nreturn js_url}"
+            pattern_jscode = re.compile(r"\(\{\}\[(.*?)\]\|\|.\)", re.DOTALL)
+            flag_code = pattern_jscode.findall(jsCodeFunc)
+            if flag_code:
+                jsCodeFunc = jsCodeFunc.replace("({}[%s]||%s)" % (flag_code[0], flag_code[0]), flag_code[0])
             pattern1 = re.compile(r"\{(.*?)\:")
             pattern2 = re.compile(r"\,(.*?)\:")
             nameList1 = pattern1.findall(jsCode)
@@ -69,13 +73,15 @@ class RecoverSpilt():
         jsFile = jsOpen.readlines()
         jsFile = str(jsFile)  # 二次转换防报错
         if "document.createElement(\"script\");" in jsFile:
-            self.log.info(Utils().tellTime() + Utils().getMyWord("{maybe_have_codesplit}") + Utils().getFilename(jsFilePath))
-            pattern = re.compile(r"\w\.p\+(.*?)\.js", re.DOTALL)
-            jsCodeList = pattern.findall(jsFile)
-            for jsCode in jsCodeList:
-                jsCode = jsCode + ".js\""
-
-                self.jsCodeCompile(jsCode, jsFilePath)
+            self.log.info(
+                Utils().tellTime() + Utils().getMyWord("{maybe_have_codesplit}") + Utils().getFilename(jsFilePath))
+            pattern = re.compile(r"\w\.p\+\"(.*?)\.js", re.DOTALL)
+            if pattern:
+                jsCodeList = pattern.findall(jsFile)
+                for jsCode in jsCodeList:
+                    if len(jsCode) < 5000:
+                        jsCode = "\"" + jsCode + ".js\""
+                        self.jsCodeCompile(jsCode, jsFilePath)
 
     def getRealFilePath(self, jsSplitId, jsFileNames, jsUrlpath):
         # 我是没见过webpack异步加载的js和放异步的js不在同一个目录下的，这版先不管不同目录的情况吧
