@@ -79,8 +79,11 @@ class ParseJs():  # 获取js进行提取
                 conn.close()
         for item in soup.find_all("link"):  # 防止使用link标签情况
             jsPath = item.get("href")
-            if jsPath[-2:] == "js":  # 防止提取css
-                self.jsPaths.append(jsPath)
+            try:
+                if jsPath[-2:] == "js":  # 防止提取css
+                    self.jsPaths.append(jsPath)
+            except:
+                pass
         try:
             jsInScript = self.scriptCrawling(demo)
             self.log.debug("scriptCrawling模块正常")
