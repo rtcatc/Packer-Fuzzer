@@ -8,6 +8,7 @@ from lib.getApiText import ApiText
 from lib.ApiCollect import Apicollect
 from lib.Database import DatabaseType
 from lib.FuzzParam import FuzzerParam
+from lib.CheckPacker import CheckPacker
 from lib.PostApiText import PostApiText
 from lib.common.beautyJS import BeautyJs
 from lib.common.CreatLog import creatLog
@@ -28,7 +29,13 @@ class Project():
         projectTag = Utils().creatTag(6)
         DatabaseType(projectTag).createDatabase()
         ParseJs(projectTag, self.url, self.options).parseJsStart()
-        RecoverSpilt(projectTag,self.options).recoverStart()
+        checkResult = CheckPacker(projectTag, self.url, self.options).checkStart()
+        if checkResult == 1 or checkResult == 777: #打包器检测模块
+            if checkResult != 777: #确保检测报错也能运行
+                creatLog().get_logger().info("[!] " + Utils().getMyWord("{check_pack_s}"))
+            RecoverSpilt(projectTag, self.options).recoverStart()
+        else:
+            creatLog().get_logger().info("[!] " + Utils().getMyWord("{check_pack_f}"))
         Apicollect(projectTag).apireCoverStart()
         apis = DatabaseType(projectTag).apiPathFromDB()  # 从数据库中提取出来的api
         self.codes = ApiResponse(apis,self.options).run()

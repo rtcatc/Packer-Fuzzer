@@ -13,7 +13,7 @@ from lib.common.cmdline import CommandLines
 
 class ParseJs():  # 获取js进行提取
 
-    def __init__(self, projectTag,url,options):
+    def __init__(self, projectTag, url, options):
         warnings.filterwarnings('ignore') #不显示警告，后期可以优化为全局的
         self.url = url
         self.jsPaths = []
