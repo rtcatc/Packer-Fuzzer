@@ -156,7 +156,7 @@
 与此同时您可以扫描左下方群聊二维码加入我们的微信讨论群，或者您可以扫描右边“天下大木头(KpLi0rn)”的个人二维码备注“Packer Fuzzer”由他拉您入群聊：
 
 <p align="center">
-    <img alt="QR-code" src="https://data.hackinn.com/photo/PF-QRcode.jpeg?date=1130" width="20%" height="20%" style="max-width:100%;">
+    <img alt="QR-code" src="https://data.hackinn.com/photo/PF-QRcode.jpeg?date=1207" width="20%" height="20%" style="max-width:100%;">
     <img alt="QR-code" src="https://data.hackinn.com/photo/DMT-QRcode.jpg" width="20%" height="20%" style="max-width:100%;">
 </p>
 
