@@ -77,7 +77,7 @@ class ApiResponse(object):
 
     def run(self):
         # target = (url for url in self.urls)
-        print(Utils().tellTime() + Utils().getMyWord("{response_start}"))
+        self.log.info(Utils().tellTime() + Utils().getMyWord("{response_start}"))
         nums = len(self.urls)
         for num in trange(nums):
             sleep(0.2)

@@ -3,13 +3,14 @@
 
 import logging,time,os
 from lib.common.utils import Utils
+from lib.common.cmdline import CommandLines
 
 
 """
 1.from lib.common.CreatLog import creatLog
 2._init_()里加入self.log = creatLog().get_logger()
 3.self.log.debug("这里输入日志信息如api接口正常这样的")
-4self.log.info("这里输入print信息")
+4.self.log.info("这里输入print信息")
 例如：
 try:
     self.log.debug("正常输出信息")
@@ -38,7 +39,10 @@ class creatLog():
             self.fh = logging.FileHandler(self.log_name, "w" ,encoding="utf-8")
             self.fh.setLevel(logging.DEBUG)
             self.chd = logging.StreamHandler()
-            self.chd.setLevel(logging.INFO)  # 设置为notset，可以打印debug、info、warning、error、critical的日志级别
+            if CommandLines().cmd().silent != None:
+                self.chd.setLevel(logging.ERROR)  # 设置为notset，可以打印debug、info、warning、error、critical的日志级别
+            else: #静默模式不显示INFO
+                self.chd.setLevel(logging.INFO)
             self.formatter = logging.Formatter(
                 "[%(levelname)s]--%(asctime)s-%(filename)s->%(funcName)s line:%(lineno)d: %(message)s\n")
             self.formatter_info = logging.Formatter()

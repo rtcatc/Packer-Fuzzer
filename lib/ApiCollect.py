@@ -59,7 +59,7 @@ class Apicollect():
     def apiViolentCollect(self, filePath):
         violentRe = r'(?isu)"([^"]+)'
         with open(filePath, "r", encoding="utf-8",errors="ignore") as jsPath:
-            print(Utils().tellTime() + Utils().getMyWord("{api_violent_file}") + Utils().getFilename(filePath))
+            self.log.info(Utils().tellTime() + Utils().getMyWord("{api_violent_file}") + Utils().getFilename(filePath))
             apiStr = jsPath.read()
             apiLists = re.findall(violentRe, apiStr)
             for apiPath in apiLists:

@@ -15,9 +15,11 @@ def testProxy(options,show):
         ipAddr = "127.0.0.1"
         ipAddr = requests.get(url, proxies=proxy_data, timeout=7, verify=False).text.strip()
         if show == 1:
-            print("[+] " + Utils().getMyWord("{connect_s}") + ipAddr)
+            if options.silent == None:
+                print("[+] " + Utils().getMyWord("{connect_s}") + ipAddr)
         return ipAddr
     except:
         if show == 1:
-            print("[!] " + Utils().getMyWord("{connect_f}"))
+            if options.silent == None:
+                print("[!] " + Utils().getMyWord("{connect_f}"))
         return ipAddr

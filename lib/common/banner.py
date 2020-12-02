@@ -2,6 +2,7 @@
 # -*- encoding: utf-8 -*-
 
 import random
+from lib.common.cmdline import CommandLines
 
 
 Version = 'Packer Fuzzer v1.1'
@@ -63,7 +64,7 @@ Banner3 = '''{}
 {}
 '''.format(Fuchsia,Version,end)
 
-Banner4 = """{}
+Banner7 = """{}
  ____            _               _____
 |  _ \ __ _  ___| | _____ _ __  |  ___|   _ ___________ _ __
 | |_) / _` |/ __| |/ / _ \ '__| | |_ | | | |_  /_  / _ \ '__|
@@ -75,9 +76,10 @@ Banner4 = """{}
 
 def RandomBanner():
     # BannerList = [Banner1,Banner2,Banner3,Banner4]
-    print(Banner4)
-    print("©2020 Poc-Sir、KpLi0rn、Liucy、RachesseHS、Lupin-III")
-    print("Project Hub: https://github.com/rtcatc/Packer-Fuzzer\n")
+    if CommandLines().cmd().silent == None:
+        print(Banner7)
+        print("©2020 Poc-Sir、KpLi0rn、Liucy、RachesseHS、Lupin-III")
+        print("Project Hub: https://github.com/rtcatc/Packer-Fuzzer\n")
 
 
 

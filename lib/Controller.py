@@ -27,6 +27,8 @@ class Project():
 
     def parseStart(self):
         projectTag = Utils().creatTag(6)
+        if self.options.silent != None:
+            print("[TAG]" + projectTag)
         DatabaseType(projectTag).createDatabase()
         ParseJs(projectTag, self.url, self.options).parseJsStart()
         checkResult = CheckPacker(projectTag, self.url, self.options).checkStart()
