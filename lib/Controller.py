@@ -36,7 +36,7 @@ class Project():
             RecoverSpilt(projectTag, self.options).recoverStart()
         else:
             creatLog().get_logger().info("[!] " + Utils().getMyWord("{check_pack_f}"))
-        Apicollect(projectTag).apireCoverStart()
+        Apicollect(projectTag, self.options).apireCoverStart()
         apis = DatabaseType(projectTag).apiPathFromDB()  # 从数据库中提取出来的api
         self.codes = ApiResponse(apis,self.options).run()
         DatabaseType(projectTag).insertResultFrom(self.codes)

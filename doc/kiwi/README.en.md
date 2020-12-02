@@ -141,7 +141,11 @@ You can use the `python3 PackerFuzzer.py [options]` command to run this tool. Th
 
 --f (--flag)
 
-  The SSL connection security option, when it is empty, is closed by default. In this state, all insecure connections will be blocked. If you want to ignore the SSL security status, you can use the `1` command to enable it, and all certificate errors will be ignored, for example: `-f 1`.
+  The SSL connection security option, when it is empty, is closed by default. In this state, all insecure connections will be blocked. If you want to ignore the SSL security status, you can use the `1` command to enable it, and all certificate errors will be ignored, for example: `-f 1`;
+
+-s (--silent)
+
+  The Silent option, once enabled, all operations that ask for YES or NO will automatically be set to YES, and the content after the parameter is the name of the scan report (custom report name), which can be used for unattended, batch operations, plug-in calls, for example: `-s Scan_Task_777`.
 
 
 

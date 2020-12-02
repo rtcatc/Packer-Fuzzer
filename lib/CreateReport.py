@@ -30,7 +30,10 @@ class CreateReport():
         if "doc" in reportTypes or "pdf" in reportTypes or "txt" in reportTypes or "html" in reportTypes:
             self.log.info(Utils().tellTime() + Utils().getMyWord("{report_creat}"))
         if "html" in reportTypes:
-            nameHtml = "reports" + os.sep + host + "-" + self.projectTag + ".html"
+            if CommandLines().cmd().silent != None:
+                nameHtml = "reports" + os.sep + CommandLines().cmd().silent + ".html"
+            else:
+                nameHtml = "reports" + os.sep + host + "-" + self.projectTag + ".html"
             if os.path.exists("reports" + os.sep + "res"):
                 pass
             else:
@@ -43,13 +46,22 @@ class CreateReport():
         if "doc" in reportTypes or "pdf" in reportTypes or "txt" in reportTypes:
             Docx_replace(self.projectTag).mainReplace()
             if "doc" in reportTypes:
-                nameDoc = "reports" + os.sep + host + "-" + self.projectTag + ".docx"
+                if CommandLines().cmd().silent != None:
+                    nameDoc = "reports" + os.sep + CommandLines().cmd().silent + ".docx"
+                else:
+                    nameDoc = "reports" + os.sep + host + "-" + self.projectTag + ".docx"
                 Docx_replace(self.projectTag).docMove(nameDoc)
             if "txt" in reportTypes:
-                nameTxt = "reports" + os.sep + host + "-" + self.projectTag + ".txt"
+                if CommandLines().cmd().silent != None:
+                    nameTxt = "reports" + os.sep + CommandLines().cmd().silent + ".txt"
+                else:
+                    nameTxt = "reports" + os.sep + host + "-" + self.projectTag + ".txt"
                 CreatTxt(self.projectTag,nameTxt).CreatMe()
             if "pdf" in reportTypes:
-                namePdf = "reports" + os.sep + host + "-" + self.projectTag + ".pdf"
+                if CommandLines().cmd().silent != None:
+                    namePdf =  "reports" + os.sep + CommandLines().cmd().silent + ".pdf"
+                else:
+                    namePdf = "reports" + os.sep + host + "-" + self.projectTag + ".pdf"
                 CreatPdf(self.projectTag,namePdf).CreatMe()
             Docx_replace(self.projectTag).docDel()
         if "doc" in reportTypes or "pdf" in reportTypes or "txt" in reportTypes or "html" in reportTypes:

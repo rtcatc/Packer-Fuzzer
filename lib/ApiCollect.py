@@ -12,7 +12,8 @@ from lib.common.cmdline import CommandLines
 
 class Apicollect():
 
-    def __init__(self, projectTag):
+    def __init__(self, projectTag, options):
+        self.options = options
         self.projectTag = projectTag
         self.regxs = [r'\w\.get\(\"(.*?)\"\,',
                       r'\w\.post\(\"(.*?)\"\,',
@@ -181,7 +182,10 @@ class Apicollect():
                             self.log.error("[Err] %s" % e)
         else:
             self.log.info(Utils().tellTime() + Utils().getMyWord("{total_api_1}") + str(len(self.apiPaths)) + Utils().getMyWord("{total_api_2}"))
-            open_violent = input(Utils().tellTime() + Utils().getMyWord("{open_violent_input}"))
+            if self.options.silent != None:
+                open_violent = input(Utils().tellTime() + Utils().getMyWord("{open_violent_input}"))
+            else:
+                open_violent = "Y"
             if open_violent == "Y" or open_violent == "y":
                 for parent, dirnames, filenames in os.walk(projectPath, followlinks=True):
                     for filename in filenames:

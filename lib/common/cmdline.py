@@ -19,6 +19,7 @@ class CommandLines():
         parse.add_option('-r', '--report', dest='report', default='html,doc', type=str, help='Choose your report\'s type')
         parse.add_option('-e', '--ext', dest='ext', default='off', type=str, help='Enable Extensions')
         parse.add_option('-f', '--flag', dest='ssl_flag', default='0', type=str, help='SSL SEC FLAG')
+        parse.add_option('-s', '--silent', dest='silent', type=str, help='Silent Mode (Custom Report Name)')
         (options, args) = parse.parse_args()
         if options.url == None:
             parse.print_help()
