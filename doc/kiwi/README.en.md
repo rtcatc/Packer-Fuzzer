@@ -109,7 +109,7 @@ You can use the `python3 PackerFuzzer.py [options]` command to run this tool. Th
 
 --d (--head)
 
-  Additional HTTP header content, which can be empty, if filled in, it will be passed in globally, the default is `Cache-Control:no-cache`, for example: `-b "Token:3VHJ32HF0"`;
+  Additional HTTP header content, which can be empty, if filled in, it will be passed in globally, the default is `Cache-Control:no-cache`, for example: `-d "Token:3VHJ32HF0"`;
 
 --l (--lang)
 

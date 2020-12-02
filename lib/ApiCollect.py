@@ -183,9 +183,9 @@ class Apicollect():
         else:
             self.log.info(Utils().tellTime() + Utils().getMyWord("{total_api_1}") + str(len(self.apiPaths)) + Utils().getMyWord("{total_api_2}"))
             if self.options.silent != None:
-                open_violent = input(Utils().tellTime() + Utils().getMyWord("{open_violent_input}"))
-            else:
                 open_violent = "Y"
+            else:
+                open_violent = input(Utils().tellTime() + Utils().getMyWord("{open_violent_input}"))
             if open_violent == "Y" or open_violent == "y":
                 for parent, dirnames, filenames in os.walk(projectPath, followlinks=True):
                     for filename in filenames:
