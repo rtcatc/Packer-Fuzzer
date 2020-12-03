@@ -85,11 +85,10 @@ class PostApiText(object):
 
                         }
                     data = '{"1": "1"}'
-                    code = str(requests.post(url, headers=header, timeout=6, data=data,proxies=self.proxy_data,
-                                             allow_redirects=False).status_code)
+                    code = str(requests.post(url, headers=header, timeout=6, data=data, proxies=self.proxy_data, allow_redirects=False, verify=False).status_code)
                     if code == "200":
                         text = str(
-                            requests.post(url, headers=header, timeout=6, data=data, proxies=self.proxy_data,verify=False).text)  # 正常的返回code是int类型
+                            requests.post(url, headers=header, timeout=6, data=data, proxies=self.proxy_data, verify=False).text)  # 正常的返回code是int类型
                         self.res[url] = text
                         break
 
