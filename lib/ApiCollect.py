@@ -19,11 +19,14 @@ class Apicollect():
                       r'\w\.post\(\"(.*?)\"\,',
                       r'\w\.post\(\"(.*?)\"',
                       r'\w\.get\(\"(.*?)\"',
-                      r'\w\+\"(.*?)\"\,']
+                      r'\w\+\"(.*?)\"\,',
+                      r'\:{url\:\"(.*?)\"\,',
+                      r'return\s.*?\[\".\"\]\.post\(\"(.*?)\"',
+                      r'return\s.*?\[\".\"\]\.get\(\"(.*?)\"']
         self.baseUrlRegxs = [r'url.?\s?\:\s?\"(.*?)\"',
                              r'url.?\s?\+\s?\"(.*?)\"',
                              r'url.?\s?\=\s?\"(.*?)\"',
-                             r'host\s?\:\s?\"(.*?)\"', ]
+                             r'host\s?\:\s?\"(.*?)\"']
         self.baseUrlPaths = []
         self.apiPaths = []
         self.completeUrls = []
