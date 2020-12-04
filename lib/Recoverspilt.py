@@ -26,7 +26,7 @@ class RecoverSpilt():
     def jsCodeCompile(self, jsCode, jsFilePath):
         try:
             self.log.info(Utils().tellTime() + Utils().getMyWord("{get_codesplit}"))
-            variable = re.findall(r'\[.\]', jsCode)
+            variable = re.findall(r'\[.*?\]', jsCode)
             if "[" and "]" in variable[0]:
                 variable = variable[0].replace("[", "").replace("]", "")
             jsCodeFunc = "function js_compile(%s){js_url=" % (variable) + jsCode + "\nreturn js_url}"
