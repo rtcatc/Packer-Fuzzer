@@ -149,6 +149,16 @@ You can use the `python3 PackerFuzzer.py [options]` command to run this tool. Th
 
 
 
+## 🎯 Use skills
+
+- When you encounter a fake stuck or the scanner is interrupted due to an unexpected error, you don't need to worry too much. You can directly find the Sqlite database file ending with `.db` in the corresponding cache folder in the tmp directory. When you open it, you can see that all real-time results of the corresponding project are saved in this database, and you can directly use the cache Database analysis of current scan results;
+- We recommend that you increase the success rate of API splicing and reduce the number of packages sent by customizing `baseurl`. It is not difficult to find `baseurl`, you only need to trigger any API in the corresponding target site and observe the missing part to find it quickly;
+- We do not recommend that you use the advanced mode of this tool on larger and more complex sites, because in some cases the advanced mode will consume an unusually large amount of time to constantly perform regular matching in the background, thus making the tool fall into a fake card Dead state;
+- When you encounter that the API of site A is on site B: you can directly use this tool to scan site B, and then use the JS attachment command **attach all JS files of site A**, so that this tool can start to Testing at site B;
+- When you are unable to create and read the database under Windows environment, you can right-click on `Run as administrator`. Please also pay attention to permission issues when you are under Linux/Mac. It is recommended to use the `sudo` command.
+
+
+
 ## 📝 Opinion exchange
 
 You can submit ISSUE directly in the Github warehouse: [https://github.com/rtcatc/Packer-Fuzzer/issues](https://github.com/rtcatc/Packer-Fuzzer/issues)
