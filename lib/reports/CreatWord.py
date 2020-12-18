@@ -12,9 +12,9 @@ from lib.Database import DatabaseType
 from lib.common.CreatLog import creatLog
 from lib.reports.creat_api import Creat_api
 from lib.common.cmdline import CommandLines
-from lib.reports.creat_tree import Creat_tree
 from lib.reports.creat_suggest import Creat_suggest
 from lib.reports.creat_vuln_detail import Creat_vuln_detail
+from lib.reports.creat_tree import Creat_tree
 
 
 class Docx_replace():
