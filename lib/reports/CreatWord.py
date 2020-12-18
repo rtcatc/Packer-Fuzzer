@@ -14,6 +14,7 @@ from lib.reports.creat_api import Creat_api
 from lib.common.cmdline import CommandLines
 from lib.reports.creat_suggest import Creat_suggest
 from lib.reports.creat_vuln_detail import Creat_vuln_detail
+from lib.reports.creat_tree import Creat_tree
 
 
 class Docx_replace():
@@ -245,6 +246,11 @@ class Docx_replace():
         try:
             Creat_suggest(self.projectTag).creat_suggest(document)
             self.log.debug("正确获取suggest替换内容")
+        except Exception as e:
+            self.log.error("[Err] %s" % e)
+        try:
+            Creat_tree(self.projectTag).tree_list(document)
+            self.log.debug("正确获取extra替换内容")
         except Exception as e:
             self.log.error("[Err] %s" % e)
 
