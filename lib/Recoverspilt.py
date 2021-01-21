@@ -53,7 +53,7 @@ class RecoverSpilt():
             cursor.execute("select path from js_file where local='%s'" % (localFile))
             jsUrlPath = cursor.fetchone()[0]
             connect.close()
-            if "exec" not in jsCode and "spawn" not in jsCode:  # 防止黑吃黑被命令执行
+            if "exec" not in jsCode and "spawn" not in jsCode and "eval" not in jsCode and "require" not in jsCode and "decode" not in jsCode:  #防止黑吃黑被命令执行，不一定很完善欢迎继续反馈
                 jsCompileResult = execjs.compile(jsCodeFunc)
                 for name in nameList:
                     if "\"" in name:
