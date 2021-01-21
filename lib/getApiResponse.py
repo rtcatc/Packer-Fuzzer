@@ -79,8 +79,8 @@ class ApiResponse(object):
         # target = (url for url in self.urls)
         self.log.info(Utils().tellTime() + Utils().getMyWord("{response_start}"))
         nums = len(self.urls)
-        for num in trange(nums):
-            sleep(0.2)
+        for _ in trange(nums):
+            sleep(0.01)
         pool = ThreadPoolExecutor(20)
         allTask = [pool.submit(self.check, domain) for domain in self.urls]
         wait(allTask, return_when=ALL_COMPLETED)

@@ -52,7 +52,7 @@ class GroupBy(object):
 
     def stat(self):
         # bar = tqdm(self.urls)
-        for _ in trange(len(self.urls)):
+        for _ in trange(len(self.urls) // 20):
             time.sleep(0.01)
 
     def start(self):

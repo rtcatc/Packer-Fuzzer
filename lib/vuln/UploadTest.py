@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 
 import random,time,os,sqlite3,requests
-from tqdm import tqdm
+from tqdm import tqdm,trange
 from urllib.parse import quote
 from lib.common import readConfig
 from lib.Database import DatabaseType
@@ -77,11 +77,8 @@ class UploadTest():
             }
 
         data = "".join(str(time.time()).split("."))
-        #print(data)
-        rands =  bytes().fromhex(data)
-
-
-        ext_fuzz = tqdm(['asp;.jpg', 'asp.jpg', 'asp;jpg', 'asp/1.jpg', 'asp{}.jpg'.format(quote('%00')), 'asp .jpg',
+        rands =  bytes().fromhex(data[:12])
+        ext_fuzz = ['asp;.jpg', 'asp.jpg', 'asp;jpg', 'asp/1.jpg', 'asp{}.jpg'.format(quote('%00')), 'asp .jpg',
                     'asp_.jpg', 'asa', 'cer', 'cdx', 'ashx', 'asmx', 'xml', 'htr', 'asax', 'asaspp', 'asp;+2.jpg',
                     'asp;.jpg', 'asp.jpg', 'asp;jpg', 'asp/1.jpg', 'asp{}.jpg'.format(quote('%00')), 'asp .jpg',
                     'asp_.jpg', 'asa', 'cer', 'cdx', 'ashx', 'asmx', 'xml', 'htr', 'asax', 'asaspp', 'asp;+2.jpg',
@@ -92,14 +89,16 @@ class UploadTest():
                     'php{}.jpg'.format(quote('%00')),
                     'php:1.jpg', 'php::$DATA', 'php::$DATA......', 'ph\np', '.jsp.jpg.jsp', 'jspa', 'jsps', 'jspx',
                     'jspf',
-                    'jsp .jpg', 'jsp_.jpg'])
+                    'jsp .jpg', 'jsp_.jpg']
         flag = 0
+
+        for _ in trange(22):
+            time.sleep(0.1)
         try:
             # python3 随机生成字符串
             sslFlag = int(self.options.ssl_flag)
             for ext in ext_fuzz:
                 # 进度条
-                ext_fuzz.set_description("Processing %s" % ext)
                 files = {"file": (
                     "{}.{}".format(random.randint(1,100), ext), (b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A\x00\x00\x00\x0D\x49\x48\xD7"+rands))}
                 if sslFlag == 1:
@@ -112,16 +111,13 @@ class UploadTest():
                     # 如果返回的信息有失败的
                     if fail in resp.text:
                         flag = 1
+
                 if flag == 0:
                     for success in str(self.upload_success).split(","):
-
                         if success in resp.text:
-                            #print("文件上传成功")
                             req_body = resp.request.body
                             resp_text = resp.text
                             # 写入数据库
-                            #print(req_body)
-                            #print(resp_text)
                             projectDBPath = DatabaseType(self.projectTag).getPathfromDB() + self.projectTag + ".db"
                             connect = sqlite3.connect(os.sep.join(projectDBPath.split('/')))
                             cursor = connect.cursor()
@@ -135,7 +131,7 @@ class UploadTest():
                                     api_id = int(apiTreeInfo[0][0])  # 对应路径的api_id
                                     from_js = int(apiTreeInfo[0][1])  # 对应路径的from_js
                                 # 数据库连接
-                                    DatabaseType(self.projectTag).insertUploadInfoIntoDB(api_id, from_js, quote(req_body),resp_text)
+                                    DatabaseType(self.projectTag).insertUploadInfoIntoDB(api_id, from_js, quote(req_body),quote(resp_text))
                                 except Exception as e:
                                     self.log.error("[Err] %s" % e)
                                 raise getoutofloop()
