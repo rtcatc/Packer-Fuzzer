@@ -196,3 +196,15 @@ When submitting, in order to facilitate our judgment, please attach the correspo
   2. Improve the part of global certificate validation that is ignored;
 
   3. Fixed several bugs that could cause serious errors in the scanner.
+
+-v1.2 2021/01/21
+
+  1. Add front-end packager recognition function and asset tree display function;
+
+  2. Optimized the asynchronous extraction rules and added two types of API identification rules;
+
+  3. Fixed the bug that the report and database could not be generated correctly;
+
+  4. Added silent mode, which is convenient for batch testing or multi-platform linkage;
+
+  5. Urgently fix a vulnerability that may cause arbitrary command execution.
