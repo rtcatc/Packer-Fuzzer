@@ -78,7 +78,7 @@ def RandomBanner():
     # BannerList = [Banner1,Banner2,Banner3,Banner4]
     if CommandLines().cmd().silent == None:
         print(Banner7)
-        print("©2020 Poc-Sir、KpLi0rn、Liucy、RachesseHS、Lupin-III")
+        print("©2021 Poc-Sir、KpLi0rn、Liucy、RachesseHS、Lupin-III")
         print("Project Hub: https://github.com/rtcatc/Packer-Fuzzer\n")
 
 
