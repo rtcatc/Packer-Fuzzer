@@ -20,8 +20,8 @@ class Creat_tree():
     def locat_suggest(self, document):
         for para in document.paragraphs:
             for i in range(len(para.runs)):
-                if "{extra_tree}" in para.runs[i].text:
-                    para.runs[i].text = para.runs[i].text.replace('{extra_tree}', '')
+                if "extra" in para.runs[i].text:
+                    para.runs[i].text = para.runs[i].text.replace('extra', '')
                     para1 = para.insert_paragraph_before("")
         return para1
 
