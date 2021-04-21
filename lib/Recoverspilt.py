@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- encoding: utf-8 -*-
 
-import execjs, os, re, sqlite3
+import node_vm2, os, re, sqlite3
 from urllib.parse import urlparse
 from lib.common.utils import Utils
 from lib.Database import DatabaseType
@@ -53,13 +53,13 @@ class RecoverSpilt():
             cursor.execute("select path from js_file where local='%s'" % (localFile))
             jsUrlPath = cursor.fetchone()[0]
             connect.close()
-            if "exec" not in jsCode and "spawn" not in jsCode and "eval" not in jsCode and "require" not in jsCode and "decode" not in jsCode:  #防止黑吃黑被命令执行，不一定很完善欢迎继续反馈
-                jsCompileResult = execjs.compile(jsCodeFunc)
+            with node_vm2.VM() as vm:
+                vm.run(jsCodeFunc)
                 for name in nameList:
                     if "\"" in name:
                         name = name.replace("\"", "")
-                    if "undefined" not in jsCompileResult.call("js_compile", name):
-                        jsFileName = jsCompileResult.call("js_compile", name)
+                    if "undefined" not in vm.call("js_compile", name):
+                        jsFileName = vm.call("js_compile", name)
                         self.jsFileNames.append(jsFileName)
             self.log.info(Utils().tellTime() + Utils().getMyWord("{run_codesplit_s}") + str(len(self.jsFileNames)))
             self.getRealFilePath(jsSplitId, self.jsFileNames, jsUrlPath)
