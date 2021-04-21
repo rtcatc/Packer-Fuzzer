@@ -256,7 +256,9 @@ class DatabaseType():
         cursor = conn.cursor()
         conn.isolation_level = None
         request_b = "Origin: " + request_b['Origin']
-        response_h = "Access-Control-Allow-Origin: " + response_h['Access-Control-Allow-Origin'] +", Access-Control-Allow-Methods: " + response_h['Access-Control-Allow-Methods'] + ", Access-Control-Allow-Credentials: " + response_h['Access-Control-Allow-Credentials']
+        # response_h = "Access-Control-Allow-Origin: " + response_h['Access-Control-Allow-Origin'] +", Access-Control-Allow-Methods: " + response_h['Access-Control-Allow-Methods'] + ", Access-Control-Allow-Credentials: " + response_h['Access-Control-Allow-Credentials']
+        response_h = "Access-Control-Allow-Origin: " + response_h['Access-Control-Allow-Origin']  + ", Access-Control-Allow-Credentials: " + response_h['Access-Control-Allow-Credentials']
+
         sql = "insert into vuln(sure,api_id,js_id,type,request_b,response_h) VALUES(1,7777777,7777777,'CORS',\"" + request_b + "\",\'" + response_h + "\');"
         cursor.execute(sql)
         conn.close()
