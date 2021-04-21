@@ -2,6 +2,7 @@
 # -*- encoding: utf-8 -*-
 
 import random
+from lib.common.utils import Utils
 from lib.common.cmdline import CommandLines
 
 
@@ -79,8 +80,8 @@ def RandomBanner():
     if CommandLines().cmd().silent == None:
         print(Banner7)
         print("©2021 Poc-Sir、KpLi0rn、Liucy、RachesseHS、Lupin-III")
-        print("Project Hub: https://github.com/rtcatc/Packer-Fuzzer\n")
-
+        print("Project Hub: https://github.com/rtcatc/Packer-Fuzzer")
+        print(Utils().getMyWord("{xhlj}") + "\n")
 
 
 RandomBanner()
