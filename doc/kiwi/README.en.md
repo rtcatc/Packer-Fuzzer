@@ -4,7 +4,7 @@
 
  <p align="center">
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/python-3.X- blueviolet"></a>
-    <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Version-1.1-red" ></a>
+    <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Version-1.2-red" ></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/LICENSE-GPL-ff69b4" ></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/github/stars/rtcatc/Packer-Fuzzer.svg"></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Packer-Fuzzer-green" ></a>
@@ -63,7 +63,7 @@ And you don’t have to worry about language problems caused by internationaliza
    sudo yum -y install epel-release && sudo yum install python3 && yum install -y python3-setuptools && easy_install pip
    ```
 
-2. This tool will run native `NodeJS` code through `PyExecJS`, so we recommend that you install the `NodeJS` environment (other JS runtime environments are not recommended, which may cause parsing failure). If you have not installed the relevant environment, you can install it through the following instructions: [https://www.runoob.com/nodejs/nodejs-install-setup.html](https://www.runoob.com/nodejs/nodejs-install -setup.html)
+2. This tool will run native `NodeJS` code through `node_vm2`, so we recommend that you install the `NodeJS` environment (other JS runtime environments are not recommended, which may cause parsing failure). If you have not installed the relevant environment, you can install it through the following instructions: [https://www.runoob.com/nodejs/nodejs-install-setup.html](https://www.runoob.com/nodejs/nodejs-install -setup.html)
 
    MacOS users can use the following command to quickly install:
 

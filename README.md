@@ -4,7 +4,7 @@
 
  <p align="center">
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/python-3.X-blueviolet"></a>
-    <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Version-1.1-red"></a>
+    <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Version-1.2-red"></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/LICENSE-GPL-ff69b4"></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/github/stars/rtcatc/Packer-Fuzzer.svg"></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Packer-Fuzzer-green"></a>
@@ -63,7 +63,7 @@
    sudo yum -y install epel-release && sudo yum install python3 && yum install -y python3-setuptools && easy_install pip
    ```
 
-2. 本工具将会通过`PyExecJS`运行原生`NodeJS`代码，故我们推荐您安装`NodeJS`环境（不推荐其他JS运行环境，可能会导致解析失败）。若您未安装相关环境，可通过如下指引安装：[https://www.runoob.com/nodejs/nodejs-install-setup.html](https://www.runoob.com/nodejs/nodejs-install-setup.html)
+2. 本工具将会通过`node_vm2`运行原生`NodeJS`代码，故我们推荐您安装`NodeJS`环境（不推荐其他JS运行环境，可能会导致解析失败）。若您未安装相关环境，可通过如下指引安装：[https://www.runoob.com/nodejs/nodejs-install-setup.html](https://www.runoob.com/nodejs/nodejs-install-setup.html)
 
    MacOS用户可使用如下命令快速安装：
 
