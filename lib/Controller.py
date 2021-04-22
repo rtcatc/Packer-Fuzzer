@@ -1,6 +1,7 @@
 # !/usr/bin/env python3
 # -*- encoding: utf-8 -*-
 
+import os
 from lib.ParseJs import ParseJs
 from lib.vulnTest import vulnTest
 from lib.common.utils import Utils
@@ -17,6 +18,7 @@ from lib.CreateReport import CreateReport
 from lib.getApiResponse import ApiResponse
 from lib.LoadExtensions import loadExtensions
 from lib.reports.CreatWord import Docx_replace
+from lib.common.CreatLog import creatLog
 
 
 class Project():
@@ -46,6 +48,10 @@ class Project():
         getPaths = DatabaseType(projectTag).sucesssPathFromDB()   # 获取get请求的path
         getTexts = ApiText(getPaths,self.options).run()    # 对get请求进行一个获取返回包
         postMethod = DatabaseType(projectTag).wrongMethodFromDB()  # 获取post请求的path
+        path_db = os.path.abspath(DatabaseType(projectTag).getPathfromDB() + projectTag + ".db")
+        path_log = os.path.abspath(creatLog(projectTag).log_name)
+        creatLog().get_logger().info("[!] " + path_db)  #  显示数据库文件路径
+        creatLog().get_logger().info("[!] " + path_log) # 显示log文件路径
         if len(postMethod) != 0:
             postText = PostApiText(postMethod,self.options).run()
             DatabaseType(projectTag).insertTextFromDB(postText)
