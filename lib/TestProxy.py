@@ -7,7 +7,9 @@ from lib.common.cmdline import CommandLines
 
 def testProxy(options,show):
     try:
-        url = "http://ifconfig.me/ip"
+        # url = "http://ifconfig.me/ip" 这节点居然不能用了...
+        # url = "https://api.my-ip.io/ip" 备用一个 Backup
+        url = "http://api.ipify.org/?format=txt"
         proxy_data = {
             'http': options.proxy,
             'https': options.proxy,
