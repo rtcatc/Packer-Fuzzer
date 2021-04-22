@@ -66,6 +66,6 @@ class Project():
             creatLog().get_logger().info("[-] " + Utils().getMyWord("{ext_end}"))
         vuln_num = Docx_replace(projectTag).vuln_judge()
         co_vuln_num = vuln_num[1] + vuln_num[2] + vuln_num[3]
-        creatLog().get_logger().info("[!]" + Utils().getMyWord("{co_discovery}") + str(co_vuln_num) + Utils().getMyWord("{effective_vuln}") + "," + Utils().getMyWord("{r_l_h}") + str(vuln_num[1]) + Utils().getMyWord("{ge}") + "," + Utils().getMyWord("{r_l_m}") + str(vuln_num[2]) + Utils().getMyWord("{ge}") + "," + Utils().getMyWord("{r_l_l}") + str(vuln_num[3]) + Utils().getMyWord("{ge}"))
+        creatLog().get_logger().info("[!] " + Utils().getMyWord("{co_discovery}") + str(co_vuln_num) + Utils().getMyWord("{effective_vuln}") + ": " + Utils().getMyWord("{r_l_h}") + str(vuln_num[1]) + Utils().getMyWord("{ge}") + ", " + Utils().getMyWord("{r_l_m}") + str(vuln_num[2]) + Utils().getMyWord("{ge}") + ", " + Utils().getMyWord("{r_l_l}") + str(vuln_num[3]) + Utils().getMyWord("{ge}"))
         CreateReport(projectTag).create_repoter()
         creatLog().get_logger().info("[-] " + Utils().getMyWord("{all_end}"))
