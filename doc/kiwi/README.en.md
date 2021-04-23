@@ -4,7 +4,7 @@
 
  <p align="center">
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/python-3.X- blueviolet"></a>
-    <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Version-1.2-red" ></a>
+    <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Version-1.3-red" ></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/LICENSE-GPL-ff69b4" ></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/github/stars/rtcatc/Packer-Fuzzer.svg"></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Packer-Fuzzer-green" ></a>
@@ -197,7 +197,7 @@ When submitting, in order to facilitate our judgment, please attach the correspo
 
   3. Fixed several bugs that could cause serious errors in the scanner.
 
--v1.2 2021/01/21
+- v1.2 2021/01/21
 
   1. Add front-end packager recognition function and asset tree display function;
 
@@ -208,3 +208,13 @@ When submitting, in order to facilitate our judgment, please attach the correspo
   4. Added silent mode, which is convenient for batch testing or multi-platform linkage;
 
   5. Urgently fix a vulnerability that may cause arbitrary command execution.
+
+- v1.3 2021/04/23
+
+  1. Fixed several bugs that may cause abnormal detection;
+
+  2. Replace PyExecJS with relatively safe node_vm2;
+
+  3. Optimized the terminal display interface and added new interactive prompts;
+
+  4. Optimize the processing mode of BaseDir to make it more user-friendly.

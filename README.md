@@ -4,7 +4,7 @@
 
  <p align="center">
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/python-3.X-blueviolet"></a>
-    <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Version-1.2-red"></a>
+    <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Version-1.3-red"></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/LICENSE-GPL-ff69b4"></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/github/stars/rtcatc/Packer-Fuzzer.svg"></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Packer-Fuzzer-green"></a>
@@ -215,3 +215,13 @@
   4. 增加了静默模式，便于批量测试或多平台联动;
 
   5. 紧急修复了一个可能会导致任意命令执行的漏洞。
+
+- v1.3 2021/04/23
+
+  1. 修复了若干可能导致检测异常的Bug;
+
+  2. 将PyExecJS替换为相对安全的node_vm2;
+
+  3. 优化了终端显示界面，增加了新的交互提示;
+
+  4. 优化了BaseDir的处理模式，使其更加人性化。
