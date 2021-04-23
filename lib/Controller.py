@@ -12,13 +12,12 @@ from lib.FuzzParam import FuzzerParam
 from lib.CheckPacker import CheckPacker
 from lib.PostApiText import PostApiText
 from lib.common.beautyJS import BeautyJs
-from lib.common.CreatLog import creatLog
-from lib.common.CreatLog import log_name,logs
 from lib.Recoverspilt import RecoverSpilt
 from lib.CreateReport import CreateReport
 from lib.getApiResponse import ApiResponse
 from lib.LoadExtensions import loadExtensions
 from lib.reports.CreatWord import Docx_replace
+from lib.common.CreatLog import creatLog,log_name,logs
 
 
 class Project():
@@ -34,10 +33,10 @@ class Project():
             print("[TAG]" + projectTag)
         DatabaseType(projectTag).createDatabase()
         ParseJs(projectTag, self.url, self.options).parseJsStart()
-        path_log = os.path.abspath(log_name) #这里名称对不上需要修复
+        path_log = os.path.abspath(log_name)
         path_db = os.path.abspath(DatabaseType(projectTag).getPathfromDB() + projectTag + ".db")
-        creatLog().get_logger().info("[!] " + Utils().getMyWord("{db_path}") + path_db)  #  显示数据库文件路径
-        creatLog().get_logger().info("[!] " + Utils().getMyWord("{log_path}") + path_log) # 显示log文件路径
+        creatLog().get_logger().info("[!] " + Utils().getMyWord("{db_path}") + path_db)  #显示数据库文件路径
+        creatLog().get_logger().info("[!] " + Utils().getMyWord("{log_path}") + path_log) #显示log文件路径
         checkResult = CheckPacker(projectTag, self.url, self.options).checkStart()
         if checkResult == 1 or checkResult == 777: #打包器检测模块
             if checkResult != 777: #确保检测报错也能运行

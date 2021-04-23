@@ -21,7 +21,8 @@ except Exception as e:
     执行命令处
     调用函数处
 """
-global log_name,logs
+
+global log_name,logs #全局变量引用
 logs = Utils().creatTag(6)
 log_name = "logs" + os.sep + Utils().creatTag(6) + ".log"
 
