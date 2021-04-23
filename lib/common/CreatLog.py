@@ -21,6 +21,9 @@ except Exception as e:
     执行命令处
     调用函数处
 """
+global log_name,logs
+logs = Utils().creatTag(6)
+log_name = "logs" + os.sep + Utils().creatTag(6) + ".log"
 
 class creatLog():
 
@@ -28,7 +31,6 @@ class creatLog():
         self.logger = logging.getLogger(logger)
         self.logger.setLevel(logging.NOTSET)
         self.log_time = time.strftime("%Y_%m_%d_")
-        self.log_name = "logs" + os.sep + Utils().creatTag(6) + ".log"
 
     def info(self, message):
         self.fontColor('\033[0;34m%s\033[0m')
@@ -36,7 +38,7 @@ class creatLog():
 
     def set_logger(self):
         if not self.logger.handlers:
-            self.fh = logging.FileHandler(self.log_name, "w" ,encoding="utf-8")
+            self.fh = logging.FileHandler(log_name, "w" ,encoding="utf-8")
             self.fh.setLevel(logging.DEBUG)
             self.chd = logging.StreamHandler()
             if CommandLines().cmd().silent != None:

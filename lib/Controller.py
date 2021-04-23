@@ -13,6 +13,7 @@ from lib.CheckPacker import CheckPacker
 from lib.PostApiText import PostApiText
 from lib.common.beautyJS import BeautyJs
 from lib.common.CreatLog import creatLog
+from lib.common.CreatLog import log_name,logs
 from lib.Recoverspilt import RecoverSpilt
 from lib.CreateReport import CreateReport
 from lib.getApiResponse import ApiResponse
@@ -28,13 +29,13 @@ class Project():
         self.options = options
 
     def parseStart(self):
-        projectTag = Utils().creatTag(6)
+        projectTag = logs
         if self.options.silent != None:
             print("[TAG]" + projectTag)
         DatabaseType(projectTag).createDatabase()
         ParseJs(projectTag, self.url, self.options).parseJsStart()
+        path_log = os.path.abspath(log_name) #这里名称对不上需要修复
         path_db = os.path.abspath(DatabaseType(projectTag).getPathfromDB() + projectTag + ".db")
-        path_log = os.path.abspath(creatLog(projectTag).log_name) #这里名称对不上需要修复
         creatLog().get_logger().info("[!] " + Utils().getMyWord("{db_path}") + path_db)  #  显示数据库文件路径
         creatLog().get_logger().info("[!] " + Utils().getMyWord("{log_path}") + path_log) # 显示log文件路径
         checkResult = CheckPacker(projectTag, self.url, self.options).checkStart()
