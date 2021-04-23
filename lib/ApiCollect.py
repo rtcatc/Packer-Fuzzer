@@ -98,7 +98,8 @@ class Apicollect():
     def getBaseurl(self, filePath):
         baseURL = CommandLines().cmd().baseurl
         if baseURL == None:
-            self.baseUrlPaths.append("/")  # 加入一个默认的
+            if "/" not in self.baseUrlPaths:
+                self.baseUrlPaths.append("/")  # 加入一个默认的
             with open(filePath, "r", encoding="utf-8",errors="ignore") as js_path:
                 baseUrlStr = js_path.read()
                 for baseurlRegx in self.baseUrlRegxs:
@@ -138,6 +139,8 @@ class Apicollect():
         url = res.scheme + "://" + res.netloc + "/".join(tmpUrl)
         if url[-1:] != "/":
             url = url + "/"
+        self.baseUrlPaths.insert(0,"/")
+        self.baseUrlDevelop()
         for baseurl in self.baseUrlPaths:
             for apiPath in self.apiPaths:
                 if baseurl == "/":
@@ -161,7 +164,6 @@ class Apicollect():
 
     def apireCoverStart(self):
         projectPath = DatabaseType(self.projectTag).getPathfromDB()
-        # projectPath = "tmp/_/"
         for parent, dirnames, filenames in os.walk(projectPath, followlinks=True):
             for filename in filenames:
                 if filename != self.projectTag + ".db":
@@ -172,7 +174,7 @@ class Apicollect():
                         self.log.debug("api收集和baseurl提取成功")
                     except Exception as e:
                         self.log.error("[Err] %s" % e)
-        if len(self.apiPaths) < 30:  # 提取结果过少时暴力破解
+        if len(self.apiPaths) < 30:  #提取结果过少时暴力破解
             self.log.info(Utils().tellTime() + Utils().getMyWord("{total_api_auto}"))
             for parent, dirnames, filenames in os.walk(projectPath, followlinks=True):
                 for filename in filenames:
@@ -200,3 +202,45 @@ class Apicollect():
                             except Exception as e:
                                 self.log.error("[Err] %s" % e)
         self.apiComplete()
+
+    def baseUrlDevelop(self):
+        # print(", ".join(output)) 要改进压缩在一起并输入在log内
+        if CommandLines().cmd().baseurl == None:
+            if len(self.baseUrlPaths) > 3:
+                if self.options.silent != None:
+                    self.baseUrlPaths = self.baseUrlPaths[:2]
+                else:
+                    if len(self.baseUrlPaths) > 7:
+                        self.baseUrlPaths = self.baseUrlPaths[:7]
+                    creatLog().get_logger().info(Utils().tellTime() + Utils().getMyWord("{base_dir_list}"))
+                    print(", ".join(self.baseUrlPaths))
+                    creatLog().get_logger().info(Utils().tellTime() + Utils().getMyWord("{api_top5_list}"))
+                    output = []
+                    for api in self.apiPaths[:5]:
+                        if "§§§" in api:
+                            api = api.split("§§§")[0]
+                            output.append(api)
+                        else:
+                            output.append(api)
+                    print(", ".join(output))
+                    baseurls = input("[!] " + Utils().getMyWord("{new_base_dir}"))
+                    if "," in baseurls:
+                        base = baseurls.split(",")
+                    else:
+                        base = baseurls
+                    self.baseUrlPaths.clear() #直接清除重置
+                    for baseurl in base:
+                        if baseurl not in self.baseUrlPaths:
+                            self.baseUrlPaths.append(baseurl)
+            elif len(self.baseUrlPaths) < 3:
+                creatLog().get_logger().info(Utils().tellTime() + Utils().getMyWord("{base_dir_list}"))
+                print(", ".join(self.baseUrlPaths))
+                creatLog().get_logger().info(Utils().tellTime() + Utils().getMyWord("{api_top5_list}"))
+                output = []
+                for api in self.apiPaths[:5]:
+                    if "§§§" in api:
+                        api = api.split("§§§")[0]
+                        output.append(api)
+                    else:
+                        output.append(api)
+                print(", ".join(output))
