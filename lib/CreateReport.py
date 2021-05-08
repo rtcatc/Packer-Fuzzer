@@ -1,7 +1,7 @@
 # !/usr/bin/env python3
 # -*- encoding: utf-8 -*-
 
-import execjs,os,re,sqlite3,time
+import os,re,sqlite3,time
 from docx import Document   #用来建立一个word对象
 from docx.shared import Pt  #用来设置字体的大小
 from urllib.parse import urlparse

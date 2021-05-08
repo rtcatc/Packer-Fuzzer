@@ -1,7 +1,7 @@
 # !/usr/bin/env python3
 # -*- encoding: utf-8 -*-
 
-import execjs,os,re,sqlite3,json,requests
+import os,re,sqlite3,json,requests
 from lib.common import readConfig
 from lib.getApiText import ApiText
 from lib.Database import DatabaseType

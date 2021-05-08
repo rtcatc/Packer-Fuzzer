@@ -1,7 +1,7 @@
 # !/usr/bin/env python3
 # -*- encoding: utf-8 -*-
 
-import execjs,os,re,sqlite3,json,requests,random
+import os,re,sqlite3,json,requests,random
 from tqdm import tqdm
 from urllib.parse import quote
 from lib.common import readConfig

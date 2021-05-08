@@ -1,14 +1,14 @@
 # !/usr/bin/env python3
 # -*- encoding: utf-8 -*-
 
-import execjs,os,re,sqlite3
+import os,re,sqlite3
 from lib.common import readConfig
 from lib.Database import DatabaseType
 from lib.common.CreatLog import creatLog
 
 
 class UnAuthTest():
-    
+
     def __init__(self, projectTag):
         self.projectTag = projectTag
         self.api_UnAuth_result = []

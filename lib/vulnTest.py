@@ -1,7 +1,7 @@
 # !/usr/bin/env python3
 # -*- encoding: utf-8 -*-
 
-import execjs, os, re, sqlite3
+import os, re, sqlite3
 from lib.common import readConfig
 from lib.common.utils import Utils
 from lib.vuln.SqlTest import SqlTest
