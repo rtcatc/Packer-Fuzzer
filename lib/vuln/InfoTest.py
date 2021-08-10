@@ -50,7 +50,7 @@ class InfoTest():
                                 connect.isolation_level = None
                                 if infoStr[0] and tag == 1:
                                     try:
-                                        print(infoStr[0])
+                                        # print(infoStr[0]) 删除调试时输出
                                         jsId = DatabaseType(self.projectTag).getJsIDFromDB(filename, projectPath)
                                         sql = "insert into vuln(api_id,js_id,response_b,response_h,sure,type,des) values ('" + str(
                                             7777777) + "','" + str(jsId) + "','" + str(infoStr[0]) + "','" + str(
