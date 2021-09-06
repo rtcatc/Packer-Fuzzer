@@ -142,14 +142,19 @@ class ParseJs():  # 获取js进行提取
         self.log.info(Utils().tellTime() + Utils().getMyWord("{pares_js_fini_1}") + str(len(self.jsRealPaths)) + Utils().getMyWord("{pares_js_fini_2}"))
         domain = res.netloc
         if ":" in domain:
-            domain = str(domain).replace(":", "_")
+            domain = str(domain).replace(":", "_") #处理端口号
         DownloadJs(self.jsRealPaths,self.options).downloadJs(self.projectTag, domain, 0)
         extJS = CommandLines().cmd().js
         if extJS != None:
             extJSs = extJS.split(',')
-            DownloadJs(extJSs,self.options).downloadJs(self.projectTag, res.netloc, 0)
+            DownloadJs(extJSs,self.options).downloadJs(self.projectTag, domain, 0)
 
-    def scriptCrawling(self, demo):  # 处理动态生成的js内容
+    def scriptCrawling(self, demo):  # 处理动态生成的js内容及html内的script
+        res = urlparse(self.url)  # 处理url多余部分
+        domain = res.netloc
+        if ":" in domain:
+            domain = str(domain).replace(":", "_") #处理端口号
+        scriptInside = "" #初始为空
         soup = BeautifulSoup(demo, "html.parser")
         for item in soup.find_all("script"):
             scriptString = str(item.string)  # 防止特殊情况报错
@@ -157,6 +162,10 @@ class ParseJs():  # 获取js进行提取
             if not listSrc == []:
                 for jsPath in listSrc:
                     self.jsPathList.append(jsPath)
+            if scriptString != "None": #None被转成字符串了
+                scriptInside = scriptInside + scriptString
+        if scriptInside != "":
+            DownloadJs(self.jsRealPaths,self.options).creatInsideJs(self.projectTag, domain, scriptInside, self.url)
         return self.jsPathList
 
     def parseJsStart(self):

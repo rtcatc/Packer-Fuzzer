@@ -105,7 +105,10 @@ class RecoverSpilt():
                 jsFileName = base_url + jsFileName
                 jsRealPaths.append(jsFileName)
         try:
-            DownloadJs(jsRealPaths,self.options).downloadJs(self.projectTag, res.netloc, jsSplitId)
+            domain = res.netloc
+            if ":" in domain:
+                domain = str(domain).replace(":", "_") #处理端口号
+            DownloadJs(jsRealPaths,self.options).downloadJs(self.projectTag, domain, jsSplitId)
             self.log.debug("downjs功能正常")
         except Exception as e:
             self.log.error("[Err] %s" % e)
@@ -154,9 +157,12 @@ class RecoverSpilt():
                     for remoteFileURL in tmpRemoteFileURLs:
                         self.remoteFileURLs.append(remoteFileURL)
         if self.remoteFileURLs != []:
+            domain = res.netloc
+            if ":" in domain:
+                domain = str(domain).replace(":", "_") #处理端口号
             self.remoteFileURLs = list(set(self.remoteFileURLs))  # 其实不会重复
             self.log.info(Utils().tellTime() + Utils().getMyWord("{check_codesplit_twice_fini_1}") + str(len(self.remoteFileURLs)) + Utils().getMyWord("{check_codesplit_twice_fini_2}"))
-            DownloadJs(self.remoteFileURLs,self.options).downloadJs(self.projectTag, res.netloc, 999)  # 999表示爆破
+            DownloadJs(self.remoteFileURLs,self.options).downloadJs(self.projectTag, domain, 999)  # 999表示爆破
 
     def recoverStart(self):
         projectPath = DatabaseType(self.projectTag).getPathfromDB()

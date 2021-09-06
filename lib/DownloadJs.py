@@ -10,7 +10,7 @@ from lib.common.CreatLog import creatLog
 
 class DownloadJs():
 
-    def __init__(self, jsRealPaths,options):
+    def __init__(self, jsRealPaths, options):
         # 传入的js文件的路径
         warnings.filterwarnings('ignore')
         self.jsRealPaths = jsRealPaths
@@ -76,8 +76,7 @@ class DownloadJs():
                 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                 self.options.head.split(':')[0]: self.options.head.split(':')[1]
             }
-
-        self.jsRealPaths = list(set(self.jsRealPaths))# list清单去重
+        self.jsRealPaths = list(set(self.jsRealPaths)) # list清单去重
         try:
             self.jsRealPaths = self.jsBlacklist()  # 不能放for循环内
             self.log.debug("js黑名单函数正常")
@@ -105,8 +104,6 @@ class DownloadJs():
             else:
                 cursor.execute(sql)
                 conn.commit()
-                # headers = {
-                #     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0"}
                 self.log.info(Utils().tellTime() + Utils().getMyWord("{downloading}") + jsFilename)
                 sslFlag = int(self.options.ssl_flag)
                 if sslFlag == 1:
@@ -119,3 +116,26 @@ class DownloadJs():
                     cursor.execute("UPDATE js_file SET success = 1 WHERE local='%s';" % (jsTag + "." + jsFilename))
                     conn.commit()
                 conn.close()
+
+    def creatInsideJs(self, tag, host, scriptInside, url):  # 生成html的script的文件
+        try:
+            jsRealPath = url
+            jsFilename = "7777777.script.inside.html.js" #随便来一个
+            jsTag = Utils().creatTag(6)
+            PATH = "tmp/" + tag + "_" + host + "/" + tag + ".db"
+            conn = sqlite3.connect(os.sep.join(PATH.split('/')))
+            cursor = conn.cursor()
+            conn.isolation_level = None
+            sql = "insert into js_file(name,path,local) values('%s','%s','%s')" % (
+                        jsFilename, jsRealPath, jsTag + "." + jsFilename)
+            cursor.execute(sql)
+            conn.commit()
+            self.log.info(Utils().tellTime() + Utils().getMyWord("{downloading}") + jsFilename)
+            with open("tmp" + os.sep + tag + "_" + host + os.sep + jsTag + "." + jsFilename, "wb") as js_file:
+                js_file.write(str.encode(scriptInside))
+                js_file.close()
+                cursor.execute("UPDATE js_file SET success = 1 WHERE local='%s';" % (jsTag + "." + jsFilename))
+                conn.commit()
+            conn.close()
+        except Exception as e:
+            self.log.error("[Err] %s" % e)
