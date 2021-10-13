@@ -79,7 +79,7 @@ class RecoverSpilt():
             if pattern:
                 jsCodeList = pattern.findall(jsFile)
                 for jsCode in jsCodeList:
-                    if len(jsCode) < 5000:
+                    if len(jsCode) < 30000:
                         jsCode = "\"" + jsCode + ".js\""
                         self.jsCodeCompile(jsCode, jsFilePath)
 
