@@ -60,11 +60,15 @@ class CreatHtml():
                     sql = "select path from js_file where id='%s'" % (vuln_info[2])
                     cursor.execute(sql)
                     js_paths = cursor.fetchall()
+                    try:
+                        api_length_info = len(api_info[4])
+                    except:
+                        api_length_info = 0
                     for js_path in js_paths:
                         tr_api_list = tr_api_list.replace("{vuln_api_name}",api_info[2])
                         tr_api_list = tr_api_list.replace("{vuln_url}", api_info[1])
                         tr_api_list = tr_api_list.replace("{vuln_url_type}", vuln_url_type)
-                        tr_api_list = tr_api_list.replace("{vuln_length}", str(len(api_info[4])))
+                        tr_api_list = tr_api_list.replace("{vuln_length}", str(api_length_info))
                         tr_api_list = tr_api_list.replace("{vuln_risk}", Utils().getMyWord("{r_l_m}"))
                         tr_api_list = tr_api_list.replace("{vuln_id}", "vuln_" + str(creat_vuln_num))
                         self.creat_api_num = self.creat_api_num + 1
@@ -93,11 +97,15 @@ class CreatHtml():
                     sql = "select path from js_file where id='%s'" % (vuln_info[2])
                     cursor.execute(sql)
                     js_paths = cursor.fetchall()
+                    try:
+                        api_length_info = len(api_info[4])
+                    except:
+                        api_length_info = 0
                     for js_path in js_paths:
                         tr_api_list = tr_api_list.replace("{vuln_api_name}", api_info[2])
                         tr_api_list = tr_api_list.replace("{vuln_url}", api_info[1])
                         tr_api_list = tr_api_list.replace("{vuln_url_type}", vuln_url_type)
-                        tr_api_list = tr_api_list.replace("{vuln_length}", str(len(api_info[4])))
+                        tr_api_list = tr_api_list.replace("{vuln_length}", str(api_length_info))
                         tr_api_list = tr_api_list.replace("{vuln_risk}", Utils().getMyWord("{r_l_l}") + "，" + Utils().getMyWord("{r_vuln_maybe}"))
                         tr_api_list = tr_api_list.replace("{vuln_id}", "vuln_" + str(creat_vuln_num))
                         self.creat_api_num = self.creat_api_num + 1
@@ -1045,6 +1053,10 @@ class CreatHtml():
             cursor.execute(sql)
             api_infos = cursor.fetchall()
             for api_info in api_infos:
+                try:
+                    api_length_info = len(api_info[4])
+                except:
+                    api_length_info = 0
                 if api_info[5] == 2:
                     api_type = Utils().getMyWord("{r_post}")
                 else:
@@ -1052,7 +1064,7 @@ class CreatHtml():
                 api_list_str = api_list_str.replace("{api_id}", str(api_id))
                 api_list_str = api_list_str.replace("{api_name}", api_info[2])
                 api_list_str = api_list_str.replace("{api_path}", api_info[1])
-                api_list_str = api_list_str.replace("{api_length}", str(len(api_info[4])))
+                api_list_str = api_list_str.replace("{api_length}", str(api_length_info))
                 api_list_str = api_list_str.replace("{api_type}", str(api_type))
                 api_id = api_id + 1
                 api_whole_html = api_whole_html + api_list_str
