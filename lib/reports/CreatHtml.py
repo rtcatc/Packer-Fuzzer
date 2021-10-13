@@ -49,6 +49,7 @@ class CreatHtml():
                       <td>{vuln_url}</td>
                       <td>{vuln_url_type}</td>
                       <td>{vuln_risk}</td>
+                      <td>{vuln_length}</td>
                       <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{vuln_id}">More</button></td>
                     </tr>"""
                     if api_info[5] == 1:
@@ -63,6 +64,7 @@ class CreatHtml():
                         tr_api_list = tr_api_list.replace("{vuln_api_name}",api_info[2])
                         tr_api_list = tr_api_list.replace("{vuln_url}", api_info[1])
                         tr_api_list = tr_api_list.replace("{vuln_url_type}", vuln_url_type)
+                        tr_api_list = tr_api_list.replace("{vuln_length}", str(len(api_info[4])))
                         tr_api_list = tr_api_list.replace("{vuln_risk}", Utils().getMyWord("{r_l_m}"))
                         tr_api_list = tr_api_list.replace("{vuln_id}", "vuln_" + str(creat_vuln_num))
                         self.creat_api_num = self.creat_api_num + 1
@@ -80,6 +82,7 @@ class CreatHtml():
                       <td>{vuln_url}</td>
                       <td>{vuln_url_type}</td>
                       <td>{vuln_risk}</td>
+                      <td>{vuln_length}</td>
                       <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{vuln_id}">More</button></td>
                     </tr>"""
                     if api_info[5] == 1:
@@ -94,6 +97,7 @@ class CreatHtml():
                         tr_api_list = tr_api_list.replace("{vuln_api_name}", api_info[2])
                         tr_api_list = tr_api_list.replace("{vuln_url}", api_info[1])
                         tr_api_list = tr_api_list.replace("{vuln_url_type}", vuln_url_type)
+                        tr_api_list = tr_api_list.replace("{vuln_length}", str(len(api_info[4])))
                         tr_api_list = tr_api_list.replace("{vuln_risk}", Utils().getMyWord("{r_l_l}") + "，" + Utils().getMyWord("{r_vuln_maybe}"))
                         tr_api_list = tr_api_list.replace("{vuln_id}", "vuln_" + str(creat_vuln_num))
                         self.creat_api_num = self.creat_api_num + 1
@@ -711,12 +715,13 @@ class CreatHtml():
                      <th>%s</th>
                      <th style="width:15%%">%s</th>
                      <th style="width:10%%">%s</th>
+                     <th style="width:5%%">%s</th>
                      <th style="width:6%%"></th>
                   </tr>
                   </thead><tbody class="ant-table-tbody">
                     {tr_unAuth_list}
                 </tbody>
-                </table><hr>"""%(Utils().getMyWord("{unauth_vuln}"),Utils().getMyWord("{api_name}"),Utils().getMyWord("{vuln_path}"),Utils().getMyWord("{r_type}"),Utils().getMyWord("{vuln_level}"))
+                </table><hr>"""%(Utils().getMyWord("{unauth_vuln}"),Utils().getMyWord("{api_name}"),Utils().getMyWord("{vuln_path}"),Utils().getMyWord("{r_type}"),Utils().getMyWord("{vuln_level}"),Utils().getMyWord("{api_length}"))
 
         info_list_str = """
 <a id="vuln_info" class="anchor"></a>
@@ -1032,6 +1037,7 @@ class CreatHtml():
                        <td>{api_id}</td>
                        <td>{api_name}</td>
                        <td>{api_path}</td>
+                       <td>{api_length}</td>
                        <td>{api_type}</td>
                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#api_{api_id}">More</button></td>
                      </tr>"""
@@ -1046,6 +1052,7 @@ class CreatHtml():
                 api_list_str = api_list_str.replace("{api_id}", str(api_id))
                 api_list_str = api_list_str.replace("{api_name}", api_info[2])
                 api_list_str = api_list_str.replace("{api_path}", api_info[1])
+                api_list_str = api_list_str.replace("{api_length}", str(len(api_info[4])))
                 api_list_str = api_list_str.replace("{api_type}", str(api_type))
                 api_id = api_id + 1
                 api_whole_html = api_whole_html + api_list_str

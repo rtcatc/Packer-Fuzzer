@@ -126,14 +126,14 @@ class ParseJs():  # 获取js进行提取
                 baseUrl = res.scheme + "://" + res.netloc + "/".join(new_tmpPath) + "/"
                 jsRealPath = baseUrl + jsPath
                 self.jsRealPaths.append(jsRealPath)
+            elif jsPath[:2] == "//":  # 自适应域名js
+                jsRealPath = res.scheme + ":" + jsPath
+                self.jsRealPaths.append(jsRealPath)
             elif jsPath[:1] == "/":
                 jsRealPath = res.scheme + "://" + res.netloc + jsPath
                 self.jsRealPaths.append(jsRealPath)
             elif jsPath[:4] == "http":
                 jsRealPath = jsPath
-                self.jsRealPaths.append(jsRealPath)
-            elif jsPath[:2] == "//":  # 自适应域名js
-                jsRealPath = res.scheme + ":" + jsPath
                 self.jsRealPaths.append(jsRealPath)
             else:
                 #jsRealPath = res.scheme + "://" + res.netloc + "/" + jsPath
