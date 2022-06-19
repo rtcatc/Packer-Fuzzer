@@ -20,6 +20,10 @@ class CommandLines():
         parse.add_option('-e', '--ext', dest='ext', default='off', type=str, help='Enable Extensions')
         parse.add_option('-f', '--flag', dest='ssl_flag', default='0', type=str, help='SSL SEC FLAG')
         parse.add_option('-s', '--silent', dest='silent', type=str, help='Silent Mode (Custom Report Name)')
+        parse.add_option('--st', '--sendtype', dest='sendtype', type=str, help='HTTP Request Type POST or GET')
+        parse.add_option('--ct', '--contenttype', dest='contenttype', type=str, help='HTTP Request Header Content-Type')
+        parse.add_option('--pd', '--postdata', dest='postdata', type=str, help='HTTP Request PostData (When Scanning)')
+        parse.add_option('--ah', '--apihost', dest='apihost', type=str, help='ApiHost like: https://pocsir.com:777/')
         (options, args) = parse.parse_args()
         if options.url == None:
             parse.print_help()

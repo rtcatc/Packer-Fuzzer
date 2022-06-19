@@ -147,6 +147,22 @@
 
   静默选项，一旦开启则一切询问YES或NO的操作都将自动设置为YES，并且参数后的内容便是本次扫描报告的名称（自定义报告名），可用于无人值守、批量操作、插件调用等模式，例如：`-s Scan_Task_777`。
 
+- --st（--sendtype）
+
+  请求方式选项，目前本选项支持POST和GET参数，一旦开启则将会使用对应的请求方式扫描所有的API，若不开启将会通过HTTP状态码来进行智能请求。
+
+- --ct（--contenttype）
+
+  Content-Type选项，可通过此选项自定义扫描时的HTTP请求头中的Content-Type参数内容，若不开启将会通过HTTP状态码来进行智能请求。
+
+- --pd（--postdata）
+
+  POST内容选项，可通过此选项自定义扫描时的POST请求内容(所有的扫描都将会使用此内容，仅对POST场景有效)，若不开启将会通过HTTP状态码来进行智能请求。
+
+- --ah（--apihost）
+
+  Api域名选项，可通过此选项自定义扫描时所有的API请求域名，例如：api部分(从JS中提取到的API路径)为`/v1/info`，扫描的url(-u --url参数传入内容，扫描的网页)为`http://exp.com/`，当apihost参数传入`https://pocsir.com:777/`则此时的API为`https://pocsir.com:777/v1/info`而不是`http://exp.com/v1/info`，用于api与前端不同域名或服务器等场景。
+
 
 
 ## 🎯 使用技巧
@@ -154,20 +170,20 @@
 - 当您遇到假卡死或者扫描器因为意外的错误而被中断时，您无需过于担心。您可以直接在tmp目录下找到对应缓存文件夹内的以`.db`结尾的Sqlite数据库文件，当您打开之后您可以看见对应项目的所有实时结果均保存在此数据库内，您可以直接通过缓存数据库分析当前的扫描结果；
 - 我们推荐您通过自定义`baseurl`的方式来提高API拼接成功率，减少发包次数。找寻`baseurl`并不难，您只需要在对应目标站点中触发任何一个API并稍加观察缺失部分即可快速寻找到；
 - 我们不推荐您在较大、较复杂的站点中使用本工具的高级模式，因为在一些情况下高级模式会耗费异常大量的时间去不停地在后台做正则匹配，从而使本工具陷入假卡死的状态；
-- 当您遇到A站点的API均在B站点时：您可以直接使用本工具扫描B站点，然后使用JS附件命令**附加A站点的全部JS文件**，这样本工具便可华丽的开始对B站点的测试；
+- 当您遇到A站点的API均在B站点时：您可以直接使用本工具的`--ah（--apihost）`命令来自定义API服务器地址；
 - 当您遇到在Windows环境下无法创建、读取数据库时，您可以右键点击`使用管理员身份运行`。当您在Linux/Mac下时请也注意权限问题，推荐使用`sudo`命令。
 
 
 
 ## 📝 意见交流
 
-您可以直接在GIthub仓库中提交ISSUE：[https://github.com/rtcatc/Packer-Fuzzer/issues](https://github.com/rtcatc/Packer-Fuzzer/issues)
+您可以直接在Github仓库中提交ISSUE：[https://github.com/rtcatc/Packer-Fuzzer/issues](https://github.com/rtcatc/Packer-Fuzzer/issues)
 
 如果您认为具体目标不宜直接公开，您可以给我们发送邮件：admin[at]hackinn.com
 
 在提交时，为了便于我们判断，请附上`logs`目录中对应的日志文件，谢谢您的配合！
 
-与此同时您可以扫描左下方群聊二维码加入我们的微信讨论群，或者您可以扫描右边“天下大木头(KpLi0rn)”的个人二维码备注“Packer Fuzzer”由他拉您入群聊：
+与此同时您可以扫描左下方群聊二维码加入我们的微信讨论群（受微信限制，此方式暂不可用），或者您可以扫描右边“天下大木头(KpLi0rn)”的个人二维码备注“Packer Fuzzer”由他拉您入群聊：
 
 <p align="center">
     <img alt="QR-code" src="https://data.hackinn.com/photo/PF-QRcode.jpeg?date=0121" width="20%" height="20%" style="max-width:100%;">

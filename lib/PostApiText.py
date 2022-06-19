@@ -8,7 +8,7 @@ from concurrent.futures import ThreadPoolExecutor,wait, ALL_COMPLETED
 
 class PostApiText(object):
 
-    def __init__(self, urls,options):
+    def __init__(self, urls, options):
         self.log = creatLog().get_logger()
         self.UserAgent = ["Mozilla/5.0 (Windows NT 6.1; WOW64; rv:34.0) Gecko/20100101 Firefox/34.0",
                           "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; en) Opera 9.50",
@@ -34,10 +34,14 @@ class PostApiText(object):
 
     def check(self, url):
         urllib3.disable_warnings()  # 禁止跳出来对warning
+        if self.options.contenttype != None:
+            contenttype = self.options.contenttype
+        else:
+            contenttype = 'application/x-www-form-urlencoded'
         if self.options.cookie != None:
             headers = {
                 'User-Agent': random.choice(self.UserAgent),
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': contenttype,
                 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                 'Cookie': self.options.cookie,
                 self.options.head.split(':')[0]:self.options.head.split(':')[1]
@@ -45,12 +49,14 @@ class PostApiText(object):
         else:
             headers = {
                 'User-Agent': random.choice(self.UserAgent),
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': contenttype,
                 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                 self.options.head.split(':')[0]:self.options.head.split(':')[1]
             }
-
-        data = "1=1"
+        if self.options.postdata != None:
+            data = self.options.postdata
+        else:
+            data = "a=1"
         # s = requests.Session()
         # s.keep_alive = False
         try:
@@ -67,10 +73,14 @@ class PostApiText(object):
             while (code == "415" or code == "401"):
                 tag += 1
                 if tag == 1:
+                    if self.options.contenttype != None:
+                        contenttype = self.options.contenttype
+                    else:
+                        contenttype = 'application/json'
                     if self.options.cookie != None:
                         header = {
                             'User-Agent': random.choice(self.UserAgent),
-                            'Content-Type': 'application/json',
+                            'Content-Type': contenttype,
                             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                             'Cookie': self.options.cookie,
                             self.options.head.split(':')[0]: self.options.head.split(':')[1]
@@ -79,12 +89,15 @@ class PostApiText(object):
                     else:
                         header = {
                             'User-Agent': random.choice(self.UserAgent),
-                            'Content-Type': 'application/json',
+                            'Content-Type': contenttype,
                             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                             self.options.head.split(':')[0]: self.options.head.split(':')[1]
 
                         }
-                    data = '{"1": "1"}'
+                    if self.options.postdata != None:
+                        data = self.options.postdata
+                    else:
+                        data = '{"a": "1"}'
                     code = str(requests.post(url, headers=header, timeout=6, data=data, proxies=self.proxy_data, allow_redirects=False, verify=False).status_code)
                     if code == "200":
                         text = str(
@@ -93,10 +106,14 @@ class PostApiText(object):
                         break
 
                 if tag == 2:
+                    if self.options.contenttype != None:
+                        contenttype = self.options.contenttype
+                    else:
+                        contenttype = 'application/xml'
                     if self.options.cookie != None:
                         header = {
                             'User-Agent': random.choice(self.UserAgent),
-                            'Content-Type': 'application/xml',
+                            'Content-Type': contenttype,
                             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                             'Cookie': self.options.cookie,
                             self.options.head.split(':')[0]: self.options.head.split(':')[1]
@@ -104,12 +121,15 @@ class PostApiText(object):
                     else:
                         header = {
                             'User-Agent': random.choice(self.UserAgent),
-                            'Content-Type': 'application/xml',
+                            'Content-Type': contenttype,
                             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                             self.options.head.split(':')[0]: self.options.head.split(':')[1]
 
                         }
-                    data = '<?xml version="1.0" encoding="utf-8"?>'
+                    if self.options.postdata != None:
+                        data = self.options.postdata
+                    else:
+                        data = '<a>1</a>'
                     if sslFlag == 1:
                         code = str(requests.post(url, headers=header, timeout=6, data=data, proxies=self.proxy_data,allow_redirects=False,verify=False).status_code)
                     else:

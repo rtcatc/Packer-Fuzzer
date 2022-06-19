@@ -48,13 +48,24 @@ class Project():
         apis = DatabaseType(projectTag).apiPathFromDB()  # 从数据库中提取出来的api
         self.codes = ApiResponse(apis,self.options).run()
         DatabaseType(projectTag).insertResultFrom(self.codes)
-        getPaths = DatabaseType(projectTag).sucesssPathFromDB()   # 获取get请求的path
-        getTexts = ApiText(getPaths,self.options).run()    # 对get请求进行一个获取返回包
-        postMethod = DatabaseType(projectTag).wrongMethodFromDB()  # 获取post请求的path
-        if len(postMethod) != 0:
-            postText = PostApiText(postMethod,self.options).run()
-            DatabaseType(projectTag).insertTextFromDB(postText)
-        DatabaseType(projectTag).insertTextFromDB(getTexts)
+        if self.options.sendtype == "GET" or self.options.sendtype == "get":
+            allPaths = DatabaseType(projectTag).allPathFromDB()
+            getTexts = ApiText(allPaths,self.options).run()    # 对get请求进行一个获取返回包
+            DatabaseType(projectTag).updatePathsMethod(1)
+            DatabaseType(projectTag).insertTextFromDB(getTexts)
+        elif self.options.sendtype == "POST" or self.options.sendtype == "post":
+            allPaths = DatabaseType(projectTag).allPathFromDB()
+            postTexts = PostApiText(allPaths,self.options).run()
+            DatabaseType(projectTag).updatePathsMethod(2)
+            DatabaseType(projectTag).insertTextFromDB(postTexts)
+        else:
+            getPaths = DatabaseType(projectTag).sucesssPathFromDB()   # 获取get请求的path
+            getTexts = ApiText(getPaths,self.options).run()    # 对get请求进行一个获取返回包
+            postPaths = DatabaseType(projectTag).wrongMethodFromDB()  # 获取post请求的path
+            if len(postPaths) != 0:
+                postTexts = PostApiText(postPaths,self.options).run()
+                DatabaseType(projectTag).insertTextFromDB(postTexts)
+            DatabaseType(projectTag).insertTextFromDB(getTexts)
         if self.options.type == "adv":
             creatLog().get_logger().info("[!] " + Utils().getMyWord("{adv_start}"))
             creatLog().get_logger().info(Utils().tellTime() + Utils().getMyWord("{beauty_js}"))

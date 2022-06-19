@@ -33,10 +33,14 @@ class PostsDataText(object):
 
     def check(self, url, data, jsondata):
         urllib3.disable_warnings()  # 禁止跳出来对warning
+        if self.options.contenttype != None:
+            contenttype = self.options.contenttype
+        else:
+            contenttype = 'application/x-www-form-urlencoded'
         if self.options.cookie != None:
             headers = {
                 'User-Agent': random.choice(self.UserAgent),
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': contenttype,
                 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                 'Cookie': self.options.cookie,
                 self.options.head.split(':')[0]:self.options.head.split(':')[1]
@@ -44,7 +48,7 @@ class PostsDataText(object):
         else:
             headers = {
                 'User-Agent': random.choice(self.UserAgent),
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': contenttype,
                 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                 self.options.head.split(':')[0]:self.options.head.split(':')[1]
             }
@@ -63,10 +67,14 @@ class PostsDataText(object):
             while (code == "415" or code == "401"):
                 tag += 1
                 if tag == 1:
+                    if self.options.contenttype != None:
+                        contenttype = self.options.contenttype
+                    else:
+                        contenttype = 'application/json'
                     if self.options.cookie != None:
                         header = {
                             'User-Agent': random.choice(self.UserAgent),
-                            'Content-Type': 'application/json',
+                            'Content-Type': contenttype,
                             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                             'Cookie': self.options.cookie,
                             self.options.head.split(':')[0]: self.options.head.split(':')[1]
@@ -74,7 +82,7 @@ class PostsDataText(object):
                     else:
                         header = {
                             'User-Agent': random.choice(self.UserAgent),
-                            'Content-Type': 'application/json',
+                            'Content-Type': contenttype,
                             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                             self.options.head.split(':')[0]: self.options.head.split(':')[1]
                         }

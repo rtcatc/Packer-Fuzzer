@@ -203,12 +203,11 @@ class DatabaseType():
         rows = cursor.fetchall()
         conn.close()
         for row in rows:
-            # print("".join(row))
             api = "".join(row)
             paths.append(api)
         return paths
 
-    # 获取sucess为2的路径 状post请求
+    # 获取sucess为2的路径 post请求
     def wrongMethodFromDB(self):
         paths = []
         projectPath = DatabaseType(self.projectTag).getPathfromDB()
@@ -220,10 +219,39 @@ class DatabaseType():
         rows = cursor.fetchall()
         conn.close()
         for row in rows:
-            # print("".join(row))
             api = "".join(row)
             paths.append(api)
         return paths
+
+    # 获取sucess为1和2的所有存在路径
+    def allPathFromDB(self):
+        paths = []
+        projectPath = DatabaseType(self.projectTag).getPathfromDB()
+        projectDBPath = projectPath + self.projectTag + ".db"
+        conn = sqlite3.connect(projectDBPath)
+        cursor = conn.cursor()
+        conn.isolation_level = None
+        cursor.execute("select path from api_tree where success=1 or success=2")
+        rows = cursor.fetchall()
+        conn.close()
+        for row in rows:
+            api = "".join(row)
+            paths.append(api)
+        return paths
+
+    #更新请求类型 POST或GET
+    def updatePathsMethod(self,code):
+        projectPath = DatabaseType(self.projectTag).getPathfromDB()
+        projectDBPath = projectPath + self.projectTag + ".db"
+        conn = sqlite3.connect(projectDBPath)
+        cursor = conn.cursor()
+        conn.isolation_level = None
+        if code == 1:
+            sql = "UPDATE api_tree SET success = 1 WHERE success = 2"
+        else:
+            sql = "UPDATE api_tree SET success = 2 WHERE success = 1"
+        cursor.execute(sql)
+        conn.close()
 
     # 将结果写入数据库
     def insertTextFromDB(self, res):

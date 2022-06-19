@@ -128,7 +128,10 @@ class Apicollect():
     def apiComplete(self):
         self.baseUrlPaths = list(set(self.baseUrlPaths))  # list去重
         self.apiPaths = list(set(self.apiPaths))
-        url = DatabaseType(self.projectTag).getURLfromDB()
+        if self.options.apihost != None:
+            url = self.options.apihost
+        else:
+            url = DatabaseType(self.projectTag).getURLfromDB()
         if "#" in url:  # 帮我检测下此处逻辑
             url = url.split("#")[0]
         res = urlparse(url)

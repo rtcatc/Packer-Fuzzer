@@ -147,6 +147,22 @@ You can use the `python3 PackerFuzzer.py [options]` command to run this tool. Th
 
   The Silent option, once enabled, all operations that ask for YES or NO will automatically be set to YES, and the content after the parameter is the name of the scan report (custom report name), which can be used for unattended, batch operations, plug-in calls, for example: `-s Scan_Task_777`.
 
+--st (--sendtype)
+
+  Request method option. Currently, this option supports POST and GET parameters. Once enabled, all APIs will be scanned using the corresponding request method. If not enabled, an intelligent request will be made through the HTTP status code.
+
+--ct (--contenttype)
+
+  Content-Type option, you can use this option to customize the content of the Content-Type parameter in the HTTP request header during scanning. If it is not enabled, the intelligent request will be made through the HTTP status code.
+
+--pd (--postdata)
+
+  POST content option, you can use this option to customize the POST request content during scanning (all scans will use this content, only valid for POST scenarios).
+
+--ah (--apihost)
+
+  Api domain name option, you can use this option to customize the domain name of all API requests during scanning, for example: the api part (the API path extracted from JS) is `/v1/info`, the scanned url (-u --url parameter The incoming content, the scanned webpage) is `http://exp.com/`, when the apihost parameter is passed in `https://pocsir.com:777/`, the API at this time is `https://pocsir. com:777/v1/info` instead of `http://exp.com/v1/info`, for scenarios such as api and front-end different domain names or servers.
+
 
 
 ## 🎯 Use skills
@@ -154,7 +170,7 @@ You can use the `python3 PackerFuzzer.py [options]` command to run this tool. Th
 - When you encounter a fake stuck or the scanner is interrupted due to an unexpected error, you don't need to worry too much. You can directly find the Sqlite database file ending with `.db` in the corresponding cache folder in the tmp directory. When you open it, you can see that all real-time results of the corresponding project are saved in this database, and you can directly use the cache Database analysis of current scan results;
 - We recommend that you increase the success rate of API splicing and reduce the number of packages sent by customizing `baseurl`. It is not difficult to find `baseurl`, you only need to trigger any API in the corresponding target site and observe the missing part to find it quickly;
 - We do not recommend that you use the advanced mode of this tool on larger and more complex sites, because in some cases the advanced mode will consume an unusually large amount of time to constantly perform regular matching in the background, thus making the tool fall into a fake card Dead state;
-- When you encounter that the API of site A is on site B: you can directly use this tool to scan site B, and then use the JS attachment command **attach all JS files of site A**, so that this tool can start to Testing at site B;
+- When you encounter that the APIs of site A are in site B: you can directly use the `--ah (--apihost)` command of this tool to customize the API server address;
 - When you are unable to create and read the database under Windows environment, you can right-click on `Run as administrator`. Please also pay attention to permission issues when you are under Linux/Mac. It is recommended to use the `sudo` command.
 
 

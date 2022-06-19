@@ -34,10 +34,14 @@ class ApiText(object):
 
     def check(self, url):
         urllib3.disable_warnings()  # 禁止跳出来对warning
+        if self.options.contenttype != None:
+            contenttype = self.options.contenttype
+        else:
+            contenttype = 'application/x-www-form-urlencoded'
         if self.options.cookie != None:
             headers = {
                 'User-Agent': random.choice(self.UserAgent),
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': contenttype,
                 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                 'Cookie': self.options.cookie,
                 self.options.head.split(':')[0]: self.options.head.split(':')[1]
@@ -45,7 +49,7 @@ class ApiText(object):
         else:
             headers = {
                 'User-Agent': random.choice(self.UserAgent),
-                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Type': contenttype,
                 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                 self.options.head.split(':')[0]: self.options.head.split(':')[1]
             }
