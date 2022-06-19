@@ -4,7 +4,7 @@
 
  <p align="center">
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/python-3.X- blueviolet"></a>
-    <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Version-1.3-red" ></a>
+    <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Version-1.4-red" ></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/LICENSE-GPL-ff69b4" ></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/github/stars/rtcatc/Packer-Fuzzer.svg"></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Packer-Fuzzer-green" ></a>
@@ -234,3 +234,19 @@ When submitting, in order to facilitate our judgment, please attach the correspo
   3. Optimized the terminal display interface and added new interactive prompts;
 
   4. Optimize the processing mode of BaseDir to make it more user-friendly.
+
+- v1.4 2022/06/19
+
+  1. Fixed several bugs that would cause the scanner to run abnormally;
+
+  2. Remove the deprecated python extension content;
+
+  3. Optimized the HTML report, now it can display the content length returned by the API, and can be sorted;
+
+  4. Added POST and GET request switching mechanism;
+
+  5. Added the custom function of Content-Type request header;
+
+  6. Added data content customization function during POST request;
+
+  7. Added the function of customizing the Api server address.

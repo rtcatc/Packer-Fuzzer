@@ -4,7 +4,7 @@
 
  <p align="center">
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/python-3.X-blueviolet"></a>
-    <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Version-1.3-red"></a>
+    <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Version-1.4-red"></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/LICENSE-GPL-ff69b4"></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/github/stars/rtcatc/Packer-Fuzzer.svg"></a>
     <a href="https://github.com/rtcatc/Packer-Fuzzer"><img alt="Packer-Fuzzer" src="https://img.shields.io/badge/Packer-Fuzzer-green"></a>
@@ -241,3 +241,19 @@
   3. 优化了终端显示界面，增加了新的交互提示;
 
   4. 优化了BaseDir的处理模式，使其更加人性化。
+
+- v1.4 2022/06/19
+
+  1. 修复了若干会导致扫描器异常运行的Bug;
+
+  2. 移除废弃的python扩展内容;
+
+  3. 优化了HTML报告，现可显示API返回内容长度，并可进行排序;
+
+  4. 添加了POST和GET请求切换机制；
+
+  5. 添加了Content-Type请求头的自定义功能;
+
+  6. 添加了POST请求时的数据内容自定义功能;
+
+  7. 添加了自定义Api服务器地址的功能。
