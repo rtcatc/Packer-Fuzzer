@@ -116,10 +116,14 @@ class ParseJs():  # 获取js进行提取
                 jsRealPath = baseUrl + jsPath
                 self.jsRealPaths.append(jsRealPath)
             elif jsPath[:3] == "../":
-                dirCount = jsPath.count('../')
+                tmpPath = res.path.split('/')
+                if res.path[-1] != "/":
+                    tmpPath = res.path + "/"
+                    tmpPath = tmpPath.split('/')
+                new_tmpPath = tmpPath[:]  # 防止解析报错
+                dirCount = jsPath.count('../') + 1
                 tmpCount = 1
                 jsPath = jsPath.replace("../", "")
-                new_tmpPath = tmpPath[:]  # 防止解析报错
                 while tmpCount <= dirCount:
                     del new_tmpPath[-1]
                     tmpCount = tmpCount + 1
