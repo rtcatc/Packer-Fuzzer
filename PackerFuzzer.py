@@ -9,7 +9,6 @@ from lib.common.readConfig import ReadConfig
 
 
 class Program():
-    
     def __init__(self,options):
         self.options = options
 
@@ -22,7 +21,5 @@ class Program():
 if __name__ == '__main__':
     cmd = CommandLines().cmd()
     testProxy(cmd,1)
-    tt = Program(cmd)
-    tt.check()
-
-
+    PackerFuzzer = Program(cmd)
+    PackerFuzzer.check()
