@@ -161,8 +161,12 @@ class ParseJs():  # 获取js进行提取
         for item in soup.find_all("script"):
             scriptString = str(item.string)  # 防止特殊情况报错
             listSrc = re.findall(r'src=\"(.*?)\.js', scriptString)
-            if not listSrc == []:
-                for jsPath in listSrc:
+            listSrc = list(filter(None, listSrc))
+            listSrc_new = []
+            for list_s in listSrc:
+                listSrc_new.append(list_s + ".js")
+            if not listSrc_new == []:
+                for jsPath in listSrc_new:
                     self.jsPathList.append(jsPath)
             if scriptString != "None": #None被转成字符串了
                 scriptInside = scriptInside + scriptString
