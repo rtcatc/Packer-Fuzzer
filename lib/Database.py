@@ -2,6 +2,7 @@
 # -*- encoding: utf-8 -*-
 
 import sqlite3,os,time
+from html import escape
 from urllib.parse import quote
 from urllib.parse import urlparse
 from lib.common.utils import Utils
@@ -268,7 +269,7 @@ class DatabaseType():
                 for ext in black_ext:
                     if ("<html" not in text) and ("PNG" not in text) and (len(text) != 0) and (url.split("/")[-1] != "favicon.ico")\
                             and (("." + str(url.split("/")[-1].split(".")[-1])) != ext):
-                        sql = "UPDATE api_tree SET result=\'" + text + "\' WHERE path=\"" + url + '\"'
+                        sql = "UPDATE api_tree SET result=\'" + escape(text) + "\' WHERE path=\"" + url + '\"'
                     else:
                         sql = "UPDATE api_tree SET success=0 WHERE path=\"" + url + '\"'
                 cursor.execute(sql)

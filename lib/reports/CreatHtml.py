@@ -399,8 +399,8 @@ class CreatHtml():
                         %s：%s<br><br>
             %s：{vuln_risk}<br><br>
             %s：<a href="{vuln_url}">{vuln_url}</a><br><br>
-            %s：{vuln_js}<br><br>
-            %s： <code>{vuln_res}</code><br>
+            %s {vuln_js}<br><br>
+            %s <code>{vuln_res}</code><br>
                     </p>
                 </div>
             </div>
@@ -440,8 +440,8 @@ class CreatHtml():
                         %s：%s<br><br>
             %s：{vuln_risk}<br><br>
             %s：<a href="{vuln_url}">{vuln_url}</a><br><br>
-            %s：{vuln_js}<br><br>
-            %s： <code>{vuln_res}</code><br>
+            %s {vuln_js}<br><br>
+            %s <code>{vuln_res}</code><br>
                     </p>
                 </div>
             </div>
@@ -480,9 +480,9 @@ class CreatHtml():
                     <p>
                         %s：%s<br><br>
             %s：{vuln_risk}<br><br>
-            %s：{vuln_des}<br><br>
-            %s：<a href="{vuln_url}">{vuln_url}</a><br><br>
-            %s：	<b>{vuln_info_less}</b><br><br>
+            %s {vuln_des}<br><br>
+            %s <a href="{vuln_url}">{vuln_url}</a><br><br>
+            %s <b>{vuln_info_less}</b><br><br>
             %s： <code>{vuln_info_more}</code><br>
                     </p>
                 </div>
@@ -516,9 +516,9 @@ class CreatHtml():
                         %s：%s<br><br>
             %s：{vuln_risk}<br><br>
             %s：<a href="{vuln_url}">{vuln_url}</a><br><br>
-            %s：{vuln_js}<br><br>
-            %s： <code>{vuln_res2}</code><br><br>
-            %s： <code>{vuln_res}</code>
+            %s {vuln_js}<br><br>
+            %s <code>{vuln_res2}</code><br><br>
+            %s <code>{vuln_res}</code>
                     </p>
                 </div>
             </div>
@@ -1093,9 +1093,9 @@ class CreatHtml():
             					<p>
             						%s：{api_name}<br><br>
                         %s：{api_type}<br><br>
-                        %s：<a href="{api_path}">{api_path}</a><br><br>
-                        %s：{api_js}<br><br>
-                        %s： <code>{api_res}</code><br>
+                        %s <a href="{api_path}">{api_path}</a><br><br>
+                        %s {api_js}<br><br>
+                        %s <code>{api_res}</code><br>
             					</p>
             				</div>
             			</div>
@@ -1427,7 +1427,7 @@ class CreatHtml():
     <p>%s</p>
   </a>
 </li>
-        """%(Utils().getMyWord("{r_sug_unauth_1}"))
+        """%(Utils().getMyWord("{r_sug_unauth_1}")[:-1])
         info_nav_str = """
 <li class="nav-item">
   <a href="#sug_info" class="nav-link">
@@ -1435,7 +1435,7 @@ class CreatHtml():
     <p>%s</p>
   </a>
 </li>
-    """%(Utils().getMyWord("{r_sug_info_1}"))
+    """%(Utils().getMyWord("{r_sug_info_1}")[:-1])
         cors_nav_str = """
 <li class="nav-item">
   <a href="#sug_cors" class="nav-link">
@@ -1443,7 +1443,7 @@ class CreatHtml():
     <p>%s</p>
   </a>
 </li>
-        """%(Utils().getMyWord("{r_sug_cors_1}"))
+        """%(Utils().getMyWord("{r_sug_cors_1}")[:-1])
         sql_nav_str = """
 <li class="nav-item">
   <a href="#sug_sql" class="nav-link">
@@ -1451,7 +1451,7 @@ class CreatHtml():
     <p>%s</p>
   </a>
 </li>
-    """%(Utils().getMyWord("{r_sug_sqli_1}"))
+    """%(Utils().getMyWord("{r_sug_sqli_1}")[:-1])
         upload_nav_str = """
 <li class="nav-item">
   <a href="#sug_upload" class="nav-link">
@@ -1459,7 +1459,7 @@ class CreatHtml():
     <p>%s</p>
   </a>
 </li>
-        """%(Utils().getMyWord("{r_sug_upload_1}"))
+        """%(Utils().getMyWord("{r_sug_upload_1}")[:-1])
         password_nav_str = """
 <li class="nav-item">
   <a href="#sug_password" class="nav-link">
@@ -1467,7 +1467,7 @@ class CreatHtml():
     <p>%s</p>
   </a>
 </li>
-        """%(Utils().getMyWord("{r_sug_password_1}"))
+        """%(Utils().getMyWord("{r_sug_password_1}")[:-1])
         bac_nav_str = """
 <li class="nav-item">
   <a href="#sug_bac" class="nav-link">
@@ -1475,7 +1475,7 @@ class CreatHtml():
     <p>%s</p>
   </a>
 </li>
-        """%(Utils().getMyWord("{r_sug_bac_1}"))
+        """%(Utils().getMyWord("{r_sug_bac_1}")[:-1])
         whole_nav_str = """
 <li class="nav-item">
   <a href="#sug_total" class="nav-link">
@@ -1483,7 +1483,7 @@ class CreatHtml():
     <p>%s</p>
   </a>
 </li>
-        """%(Utils().getMyWord("{r_sug_g_1}"))
+        """%(Utils().getMyWord("{r_sug_g_1}")[:-1])
         if flag1:
             sug_unauth_num = "1"
             unauth_str = unauth_str.replace("sug_unauth",sug_unauth_num)
