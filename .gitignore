@@ -5,6 +5,7 @@ __pycache__/
 main.db
 lib/test.py
 
+tmp/*.lock
 tmp/*/*
 reports/*.docx
 reports/*.html
