@@ -104,7 +104,13 @@ class ParseJs():  # 获取js进行提取
         else:
             baseUrl = res.scheme + "://" + res.netloc + res.path
             if res.path[-1:] != "/":  # 文件夹没"/",若输入的是文件也会被加上，但是影响不大
-                baseUrl = baseUrl + "/"
+                try:
+                    if res.path[-3:] == "htm" or res.path[-4:] == "html":
+                        baseUrl = baseUrl.rsplit("/",1)[0] + "/"
+                    else:
+                        baseUrl = baseUrl + "/"
+                except:
+                    baseUrl = baseUrl + "/"
         for jsPath in js_paths:  # 路径处理多种情况./ ../ / http
             if jsPath[:2] == "./":
                 jsPath = jsPath.replace("./", "")
@@ -139,7 +145,7 @@ class ParseJs():  # 获取js进行提取
                 self.jsRealPaths.append(jsRealPath)
             else:
                 #jsRealPath = res.scheme + "://" + res.netloc + "/" + jsPath
-                jsRealPath = baseUrl + jsPath #我感觉我原来的逻辑写错了
+                jsRealPath = baseUrl + jsPath
                 self.jsRealPaths.append(jsRealPath)
         self.log.info(Utils().tellTime() + Utils().getMyWord("{pares_js_fini_1}") + str(len(self.jsRealPaths)) + Utils().getMyWord("{pares_js_fini_2}"))
         domain = res.netloc

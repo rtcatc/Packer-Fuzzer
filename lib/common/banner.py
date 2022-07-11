@@ -6,7 +6,7 @@ from lib.common.utils import Utils
 from lib.common.cmdline import CommandLines
 
 
-Version = 'Packer Fuzzer v1.4.8'
+Version = 'Packer Fuzzer v1.4.9'
 red = '\033[25;31m'
 green = '\033[25;32m'
 yellow = '\033[25;33m'
