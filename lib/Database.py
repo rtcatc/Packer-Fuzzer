@@ -151,6 +151,21 @@ class DatabaseType():
         connect.commit()
         connect.close()
 
+    # 判断API在数据库内是否已经存在
+    def apiHaveOrNot(self, api_path):
+        projectPath = DatabaseType(self.projectTag).getPathfromDB()
+        projectDBPath = projectPath + self.projectTag + ".db"
+        conn = sqlite3.connect(projectDBPath)
+        cursor = conn.cursor()
+        conn.isolation_level = None
+        cursor.execute("select path from api_tree where path = \"" + api_path + "\"")
+        row = cursor.fetchone()
+        conn.close()
+        if row == None:
+            return True
+        else:
+            return False
+
     # 获取数据库里面的path
     def apiPathFromDB(self):
         apis = []

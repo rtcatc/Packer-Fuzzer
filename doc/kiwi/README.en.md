@@ -163,6 +163,10 @@ You can use the `python3 PackerFuzzer.py [options]` command to run this tool. Th
 
   Api domain name option, you can use this option to customize the domain name of all API requests during scanning, for example: the api part (the API path extracted from JS) is `/v1/info`, the scanned url (-u --url parameter The incoming content, the scanned webpage) is `http://exp.com/`, when the apihost parameter is passed in `https://pocsir.com:777/`, the API at this time is `https://pocsir. com:777/v1/info` instead of `http://exp.com/v1/info`, for scenarios such as api and front-end different domain names or servers.
 
+--fe (--fileext)
+
+  Api extension option, you can use this option to add a specific extension to all APIs to deal with the situation that the extension extraction is missing when extracting the API, for example: when the extracted API is `https://pocsir.com: 777/v1/info`, pass in `--fe json`, the tool will automatically convert the API to `https://pocsir.com:777/v1/info.json` for scanning and detection.
+
 
 
 ## 🎯 Use skills

@@ -157,12 +157,23 @@ class Apicollect():
                     self.completeUrls.append(completeUrl1)
                     self.completeUrls.append(completeUrl2)
         self.completeUrls = list(set(self.completeUrls))
+        fileext = ""
+        if self.options.filenameextension != None:
+            fileext = self.options.filenameextension
         for completeUrl in self.completeUrls:
-            if "//" in completeUrl.split("//", 1)[1]:
-                completeUrl = completeUrl.split("//", 1)[0] + "//" + completeUrl.split("//", 1)[1].replace("//", "/")
-            completeApiPath = completeUrl.split("§§§")[0]
             filePath = completeUrl.split("§§§")[1]
-            DatabaseType(self.projectTag).apiRecordToDB(filePath, completeApiPath)
+            completeApiPath = completeUrl.split("§§§")[0]
+            if completeApiPath[-1] == "/":
+                completeApiPath = completeApiPath[:-1] + fileext
+            else:
+                completeApiPath = completeApiPath + fileext
+            if "//" in completeApiPath.split("://", 1)[1]:
+                completeApiPath_tmp = completeApiPath.split("//", 1)[1]
+                while("//" in completeApiPath_tmp):
+                    completeApiPath_tmp = completeApiPath_tmp.replace("//", "/")
+                completeApiPath = completeApiPath.split("://", 1)[0] + "://" + completeApiPath_tmp
+            if DatabaseType(self.projectTag).apiHaveOrNot(completeApiPath):
+                DatabaseType(self.projectTag).apiRecordToDB(filePath, completeApiPath)
         self.log.info(Utils().tellTime() + Utils().getMyWord("{total_api_num}") + str(len(self.completeUrls)))
 
     def apireCoverStart(self):

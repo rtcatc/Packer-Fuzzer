@@ -163,6 +163,10 @@
 
   Api域名选项，可通过此选项自定义扫描时所有的API请求域名，例如：api部分(从JS中提取到的API路径)为`/v1/info`，扫描的url(-u --url参数传入内容，扫描的网页)为`http://exp.com/`，当apihost参数传入`https://pocsir.com:777/`则此时的API为`https://pocsir.com:777/v1/info`而不是`http://exp.com/v1/info`，用于api与前端不同域名或服务器等场景。
 
+- --fe（--fileext）
+
+  Api扩展名选项，可通过此选项对所有API都添加特定的扩展名，以便应对在提取API时出现扩展名提取缺失的情况，例如：当提取到的API为`https://pocsir.com:777/v1/info`时，传入`--fe json`则工具将会自动将API转化成`https://pocsir.com:777/v1/info.json`进行扫描及检测。
+
 
 
 ## 🎯 使用技巧

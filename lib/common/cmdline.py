@@ -24,6 +24,7 @@ class CommandLines():
         parse.add_option('--ct', '--contenttype', dest='contenttype', type=str, help='HTTP Request Header Content-Type')
         parse.add_option('--pd', '--postdata', dest='postdata', type=str, help='HTTP Request PostData (When Scanning)')
         parse.add_option('--ah', '--apihost', dest='apihost', type=str, help='ApiHost like: https://pocsir.com:777/')
+        parse.add_option('--fe', '--fileext', dest='filenameextension', type=str, help='Api Filename Extension such as: .json')
         (options, args) = parse.parse_args()
         if options.url == None:
             parse.print_help()
