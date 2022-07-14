@@ -165,7 +165,7 @@
 
 - --fe（--fileext）
 
-  Api扩展名选项，可通过此选项对所有API都添加特定的扩展名，以便应对在提取API时出现扩展名提取缺失的情况，例如：当提取到的API为`https://pocsir.com:777/v1/info`时，传入`--fe json`则工具将会自动将API转化成`https://pocsir.com:777/v1/info.json`进行扫描及检测。
+  Api扩展名选项，可通过此选项对所有API都添加特定的扩展名，以便应对在提取API时出现扩展名提取缺失的情况，例如：当提取到的API为`https://pocsir.com:777/v1/info`时，传入`--fe .json`则工具将会自动将API转化成`https://pocsir.com:777/v1/info.json`进行扫描及检测。
 
 
 
