@@ -223,13 +223,12 @@ class CreatHtml():
         for vuln_info in vuln_infos:
             if vuln_info[3] == "CORS":
                 tr_cors_list = tr_cors_list.replace("{vuln_api_path}",api_path)
-                tr_cors_list = tr_cors_list.replace("{vuln_payload}", vuln_infos[0][5])
+                tr_cors_list = tr_cors_list.replace("{vuln_payload}", vuln_info[5])
                 tr_cors_list = tr_cors_list.replace("{vuln_risk}",  Utils().getMyWord("{r_l_l}"))
                 tr_cors_list = tr_cors_list.replace("{vuln_id}", "vuln_" + str(creat_vuln_num))
                 self.creat_api_num = self.creat_api_num + 1
                 creat_vuln_num = creat_vuln_num + 1
                 tr_whole_cors_list = tr_whole_cors_list + tr_cors_list
-
         return tr_whole_cors_list
 
 
