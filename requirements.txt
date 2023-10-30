@@ -4,4 +4,4 @@ requests
 docx2pdf
 docx2txt
 node_vm2
-python-docx
+python-docx==0.8.11
